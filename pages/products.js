@@ -42,10 +42,19 @@ function createFilter(){
   let pageFilter = [];
   for (let product = 0; product < allProducts.length; product++) {
           for (let option = 0; option < allProducts[product].options.length; option++) {
-          pageFilter.push({name:'name', value: allProducts[product].options[option].name});
-                         for (let val = 0; val < allProducts[product].options[option].values.length; val++) {
-                          pageFilter.push({name:'value', value: allProducts[product].options[option].values[val].value});
-                    }
+               let options = allProducts[product].options[option]
+                 console.log ('--------------------------------------')
+                if( !pageFilter.find((e)=>e.name == options.name )){
+                  let options_values = []
+                  options.values.map((option) => options_values.push(option.value))
+                  pageFilter.push({name: options.name, values: options_values });
+                }
+                else{
+                 let curent_option = pageFilter.find((e)=>e.name == options.name)
+                  let new_options_values = []
+                  options.values.map((option) => new_options_values.push(option.value))
+                 curent_option.values=[...new Set([...curent_option.values,...new_options_values])]
+                }
              }
         }
         console.log(pageFilter)
@@ -61,7 +70,7 @@ function createFilter(){
             <div className="container products">
             { popup == true ?  <div className="popup active" onClick={()=>{setPopup(false)}}><ProductPopup product={product}/></div> : <div className="popup"></div> }
 
-             {filter.map((value, index) => {return value.value})}
+
 
                 <div className="row">
                     {currentProducts.map((product, index) => {
