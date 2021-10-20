@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* color */
+$brand-primary: #0C1821 !default;
+$brand-secondary: #0b1a1d !default;
+$brand-btn: #E1C87D !default;
+$brand-hover: #E1C87D !default;
+$brand-bg:#303030 !default;
+$grey100: #30221F !default;
+$grey80: #5D5250 !default;
+$grey60: #7A7170 !default;
+$grey40: #999291 !default;
+$grey20: #B6B1B0 !default;
+$grey10: #D5D2D2 !default;
+$grey5: #F6F6F6 !default;
+$white: #FFFFFF !default;
+$red: #ee3524 !default;
+
+$red-hover: #f04436 !default;
+
+
+
+
+/* font-size */
+/* h1 */
+$h1: 72px !default;
+$h1-big: 72px !default;
+$h1-lg: 48px !default;
+$h1-md: 48px !default;
+$h1-sm: 36px !default;
+$h1-xs: 36px !default;
+
+
+/* h2 */
+$h2: 44px !default;
+$h2-big: 44px !default;
+$h2-lg: 42px !default;
+$h2-md: 36px !default;
+$h2-sm: 36px !default;
+$h2-xs: 28px !default;
+/* h3 */
+$h3: 42px !default;
+$h3-big: 42px !default;
+$h3-lg: 32px !default;
+$h3-md: 22px !default;
+$h3-sm: 18px !default;
+$h3-xs: 18px !default;
+/* h4 */
+$h4: 28px !default;
+$h4-big: 28px !default;
+$h4-lg: 24px !default;
+$h4-md: 19px !default;
+$h4-sm: 16px !default;
+$h4-xs: 15px !default;
+/* h5 */
+$h5: 24px !default;
+$h5-big: 24px !default;
+$h5-lg: 22px !default;
+$h5-md: 18px !default;
+$h5-sm: 16px !default;
+$h5-xs: 16px !default;
+/* h6 */
+$h6: 20px !default;
+$h6-big: 20px !default;
+$h6-lg: 18px !default;
+$h6-md: 16px !default;
+$h6-sm: 15px !default;
+$h6-xs: 15px !default;
+
+/* base */
+$base: 16px !default;
+$base-big: 16px !default;
+$base-lg: 16px !default;
+$base-md: 15px !default;
+$base-sm: 14px !default;
+$base-xs: 14px !default;
+
+/* ps */
+$ps: 14px !default;
+$ps-big: 14px !default;
+$ps-lg: 14px !default;
+$ps-md: 14px !default;
+$ps-sm: 14px !default;
+$ps-xs: 14px !default;
+
+/* font-family */
+
+$family-base:  'Poppins', 'sans-serif' !default;
+$family-title:  'Montserrat', 'sans-serif'!default;
+
+/* breakpoints */
+$screen-big-min: 1680px !default;
+$screen-lg-min: 1200px !default;
+$screen-md-min: 992px !default;
+$screen-sm-min: 768px !default;
+$screen-xs-min: 576px !default;
+$screen-xss-min: 500px !default;
+
+
+
+/* 768 */
+@mixin _media-small-down(){
+  @media (max-width: $screen-sm-min) { @content; }
+}
+/* 991 */
+@mixin _media-md-down(){
+  @media (max-width: $screen-md-min) { @content; }
+}
+/* 1200 */
+@mixin _media-lg-down(){
+  @media (max-width: $screen-lg-min) { @content; }
+}
+/* 576 */
+@mixin _media-xs-down(){
+  @media (max-width: $screen-xs-min) { @content; }
+}
+
+@mixin _media-big-down(){
+  @media (max-width: $screen-big-min) { @content; }
+}
+/* 480 */
+@mixin _media-xss-down(){
+  @media (max-width: $screen-xss-min) { @content; }
+}
+
+
+@mixin _ul_clear() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+li{
+  list-style: none;
+}

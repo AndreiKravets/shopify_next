@@ -1,0 +1,42 @@
+.popup{
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:all .3s ease-in-out;
+  &.active{
+   z-index: 99;
+    opacity: 1;
+    transition:all .3s ease-in-out;
+    .popup_inner{
+      transition:all .3s ease-in-out;
+    }
+  }
+  .popup_inner{
+    background-color: $grey5;
+    padding: 30px 10px;
+    img{
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .pruduct_options{
+      margin-right: 10px;
+      li{
+        cursor: pointer;
+        margin-bottom: 7px;
+        &.active{
+          color: $brand-hover;
+        }
+      }
+    }
+  }
+
+}
