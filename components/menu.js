@@ -7,9 +7,7 @@ import {observer} from "mobx-react-lite";
 
 const Menu = observer(()=>  {
     products_store.getAllCollections()
-    // console.log(products_store.allCollections)
 const allMenuCollections = toJS(products_store.allCollections);
-    // console.log(allMenuCollections)
     if(allMenuCollections == 1){
         return (
             <ul>

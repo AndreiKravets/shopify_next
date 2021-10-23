@@ -1,0 +1,36 @@
+.products_filter{
+  margin-bottom: 10px;
+  h5{
+    padding-bottom: 5px;
+    font-weight: 500;
+  }
+  li{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 3px;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+    font-weight: 500;
+    svg{
+      margin-right: 5px;
+      &.check_box_active{
+        display: none;
+      }
+      &.check_box{
+        display: block;
+      }
+    }
+    &.active{
+      svg{
+        margin-right: 5px;
+        &.check_box_active{
+          display: block;
+        }
+        &.check_box{
+          display: none;
+        }
+      }
+    }
+  }
+}
