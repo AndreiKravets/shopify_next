@@ -17,9 +17,16 @@ const [pagination, setPagination] = useState(createPagination(quantity_products)
 const [allProducts, setAllProducts] = useState(()=>products);
 const [filteredProducts, setFilteredProducts] = useState(()=>products);
 const [filter, setFilter] = useState(createFilter());
-const [currentFilter, setCurrentFilter] = useState(['12sm','11sm']);
-const [currentProducts, setCurrentProducts] = useState(()=>filteredProducts.slice(0, quantity_products));
-console.log(allProducts)
+const [currentFilter, setCurrentFilter] = useState([]);
+const [currentProducts, setCurrentProducts] = useState(set_current_products());
+
+function set_current_products(){
+return(
+filteredProducts.slice(0, quantity_products)
+)
+
+}
+
 async function getProduct(id){
     const product = await client.product.fetch(id);
      const productPopup = JSON.parse(JSON.stringify(product));
@@ -59,7 +66,6 @@ function createFilter(){
                 }
              }
         }
-        console.log(pageFilter)
     return pageFilter
 }
 
@@ -68,9 +74,23 @@ function createFilter(){
   current_filter.push(value)
   let new_current_filter = current_filter
   setCurrentFilter(new_current_filter)
+  console.log(currentFilter)
+  let newFilteredProducts = [];
+  allProducts.map((product)=>{
+   product.options.map((option) => {
+      option.values.map((value) => {
+       if(new_current_filter.includes(value.value)){
+         newFilteredProducts.push(product)
+        }
+       })
+   })
+  })
+
+setFilteredProducts(newFilteredProducts)
+setCurrentProducts(newFilteredProducts)
   }
 
-
+console.log(filteredProducts)
     return (
     <MainContainer title={'product'}>
       <div className="container-fluid products_top_section">
