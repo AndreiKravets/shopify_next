@@ -13,7 +13,7 @@ export default function products({products}) {
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
-    const [pagination, setPagination] = useState(createPagination(quantity_products));
+    const [pagination, setPagination] = useState(createPagination(quantity_products,filteredProducts));
     const [filter, setFilter] = useState(createFilter());
     const [currentFilter, setCurrentFilter] = useState([[]]);
     const [currentProducts, setCurrentProducts] = useState(set_current_products());
@@ -35,9 +35,9 @@ export default function products({products}) {
         setCurrentProducts(filteredProducts.slice(current_page * quantity_products - quantity_products, current_page * quantity_products))
     }
 
-    function createPagination(page) {
+    function createPagination(page, products) {
         let pageArr = [];
-        for (var i = 1; i < filteredProducts.length / page + 1; i++) {
+        for (var i = 1; i < products.length / page + 1; i++) {
             pageArr.push(i);
         }
         return pageArr
@@ -68,27 +68,34 @@ export default function products({products}) {
 
     function set_current_filter(name, value) {
         let current_filter = [...currentFilter]
-        let newOptions = {
-            name: name,
-            values: [value]
-        }
 
-        current_filter[0].push(value)
+
+
         let option = current_filter.find(e => e.name == name)
         if (option) {
-        option.values.push(value)
-        } else{
-          current_filter.push({name:name, values:[value]})
-        }
+         if(option.values.includes(value)){
+            option.values = option.values.filter(item => item !== value)
+           current_filter[0].splice(current_filter[0].indexOf(value), 1);
 
-        let new_current_filter = current_filter
-        setCurrentFilter(new_current_filter)
-        console.log(new_current_filter)
+            if(option.values.length < 1){
+            const index = current_filter.map(e => e.name).indexOf(name);
+          current_filter.splice(index, 1);
+           }
+          } else{
+           option.values.push(value)
+           current_filter[0].push(value)
+          }
+          } else{
+            current_filter.push({name:name, values:[value]})
+            current_filter[0].push(value)
+        }
+        setCurrentFilter(current_filter)
+        console.log(current_filter)
 
 
         let newFilteredProducts = [];
         products.map((product) => {
-            if (product.options.length >= new_current_filter.length - 1) {
+            if (product.options.length >= current_filter.length - 1) {
                 let coincidence = 0;
                 for (let option = 0; option < product.options.length; option++) {
                     for (let filter = 1; filter < current_filter.length; filter++) {
@@ -107,13 +114,15 @@ export default function products({products}) {
                     }
             }
         })
+
+     
+
      setFilteredProducts(newFilteredProducts)
      current_Products(1)
      setCurrentProducts(newFilteredProducts.slice(0, quantity_products))
-    createPagination(quantity_products)
+     setPagination(createPagination(quantity_products,newFilteredProducts))
     }
 
-    console.log(filteredProducts)
     return (
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
