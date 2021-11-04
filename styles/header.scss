@@ -19,9 +19,11 @@
 
   .header_btn{
     color: white;
+    display: flex;
     svg {
       margin-left: 23px;
       font-size: 19px;
+      cursor: pointer;
     }
     @include _media-md-down() {
       position: absolute;

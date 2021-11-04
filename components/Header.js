@@ -5,10 +5,10 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import Menu from "./menu";
 import cart_store from "../store/cart_store";
 import {observer} from "mobx-react-lite";
+import products_store from "../store/products_store";
 
 
 const Header = observer( ()=> {
-
     const [activeMenu, setActiveMenu] = useState(false)
     const [activeStickyMenu, setActiveStickyMenu] = useState(false)
 
@@ -34,7 +34,7 @@ const Header = observer( ()=> {
                                 setActiveMenu(!activeMenu);
                             }}
                             type="button"><span className="hamburger-box"><span
-                        className="hamburger-inner"></span></span></button>
+                             className="hamburger-inner"></span></span></button>
                     <div className="col-auto header_logo">
                         <img src="/logo.svg" alt=""/>
                     </div>
@@ -45,7 +45,7 @@ const Header = observer( ()=> {
                     </div>
                     <div className="col-auto header_btn">
                         <FaRegHeart/>
-                        <Link href="cart"><RiShoppingCartLine/></Link>
+                        <Link href="/cart"><a><RiShoppingCartLine/></a></Link>
                         {cart_store.count}
                     </div>
                 </div>
@@ -82,7 +82,7 @@ const Header = observer( ()=> {
                     </div>
                     <div className="col-auto header_btn">
                         <FaRegHeart/>
-                        <Link href="cart"><RiShoppingCartLine/></Link>
+                        <Link href="cart"><a><RiShoppingCartLine/></a></Link>
                         {cart_store.count}
                     </div>
                 </div>

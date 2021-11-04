@@ -6,7 +6,9 @@ class Cart_store {
         makeAutoObservable(this)
     }
 
-
+    setCount(e){
+        this.count = e
+    }
     incCount(){
         this.count = this.count + 1
     }

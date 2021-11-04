@@ -32,7 +32,7 @@ const allMenuCollections = toJS(products_store.allCollections);
                     <ul className="sub-menu">
                         {allMenuCollections.map((collection,index)=>{
                             return(
-                                <li><Link href={`/collections/${index}`}>{collection.handle}</Link></li>
+                                <li key={index}><Link href={`/collections/${index}`}>{collection.handle}</Link></li>
                             )
                         })}
 

@@ -55,7 +55,7 @@ export default function collections({products}) {
                 <div className="row">
                     {currentProducts.map((product, index) => {
                         return (
-                            <div className="col-md-4">
+                            <div className="col-md-4" key={index}>
                                 <Link href={`/collections/${index}`}>{product.handle}</Link>
                             </div>
                         )
@@ -66,7 +66,7 @@ export default function collections({products}) {
                     <ul>
                         {pagination.map((index)=>{
                             return(
-                                <li onClick={()=>current_Products(index)}>{index}</li>
+                                <li onClick={()=>current_Products(index)} key={index}>{index}</li>
                             )
                         })}
                     </ul>

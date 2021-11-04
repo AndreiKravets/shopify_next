@@ -4,7 +4,7 @@ import Link from "next/link"
 import {client} from "../utils/shopify";
 
 export default function Card (props) {
-    const {index, id, title,images,price} = props;
+    const {index, id,handle, title,images,price} = props;
     const style ={
         backgroundImage: `url(${images})`
     }
@@ -19,8 +19,8 @@ export default function Card (props) {
                     </div>
                 </div>
                        <div onClick={e => e.stopPropagation()}>
-                            <Link href={`/product/${id}`}>{title}</Link>
-                            <Link href={`/product/${id}`}><strong>{price} $</strong></Link>
+                            <Link href={`/product/${handle}`}>{title}</Link>
+                            <Link href={`/product/${handle}`}><strong>{price} $</strong></Link>
                         </div>
         </div>
     )

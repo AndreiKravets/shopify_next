@@ -1,9 +1,16 @@
-import React, {useState} from 'react'
-import {client} from "../utils/shopify";
-import cart_store from "../store/cart_store";
+import React, {Component} from 'react';
+import {client} from "../../utils/shopify"
+import Router , {useRouter}  from 'next/router';
+import { useState } from "react";
+import MainContainer from "../../components/MainContainer";
+import cart_store from "../../store/cart_store";
+import {toJS} from "mobx";
+import {observer} from "mobx-react-lite";
 
-export default function ProductPopup ({product}) {
-     const initOptions = []
+const Product = observer( ({product})=> {
+    console.log(product)
+
+    const initOptions = [];
     product.options.map((option) => {
         const name = option.name
         const value = option.values[0].value
@@ -17,7 +24,7 @@ export default function ProductPopup ({product}) {
 
 
 
-   function onVar (e, name, value, variants) {
+    function onVar (e, name, value, variants) {
         var x = document.getElementById(name).querySelectorAll(".active");
         x[0].classList.remove('active');
         e.target.className = "active";
@@ -27,7 +34,7 @@ export default function ProductPopup ({product}) {
                 options_click[key].value = value
             }
         }
-       setOptions(options_click)
+        setOptions(options_click)
 
 
         let count = 0
@@ -49,7 +56,7 @@ export default function ProductPopup ({product}) {
                 }
             }
         }
-       setVariants(variants)
+        setVariants(variants)
     }
 
     const addToCart = async () => {
@@ -66,16 +73,15 @@ export default function ProductPopup ({product}) {
             quantity: quantity
         }])
         storage.setItem('cart', JSON.stringify(cart))
-        console.log(cart)
         cart_store.setCount(cart.lineItems.length)
     };
 
 
     return(
-        <div className="popup_inner" onClick={e => e.stopPropagation()}>
-            <div className="container">
+        <MainContainer>
+            <div className="container single_product_container">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6 single_product_image">
                         {product.images.map((iage,index) => {
                             return (
                                 <img src={iage.src} key={index}/>
@@ -83,15 +89,15 @@ export default function ProductPopup ({product}) {
                             )
                         })}
                     </div>
-                    <div className="col-6">
-                        <p className="product_title">{product.title}</p>
-                        <h4 className="product_price">{price}</h4>
+                    <div className="col-6 single_product_content">
+                        <h4 className="product_title">{product.title}</h4>
+                        <h5 className="product_price">$ {price}</h5>
                         <div>
                             {product.options.map((option, index) => {
                                 return (
-                                    <div className="popup_product_options" key={index}>
+                                    <div className="product_options" key={index}>
                                         <div><span>{option.name}</span></div>
-                                        <ul id={option.name}>
+                                        <ul  id={option.name}>
                                             { option.values.map((val, index) => {
                                                 if (index == 0) {
                                                     return (
@@ -99,7 +105,7 @@ export default function ProductPopup ({product}) {
                                                             key={index}
                                                             className= "active btn"
                                                             onClick = {(e) => {
-                                                               onVar(e, option.name, val.value, product.variants)
+                                                                onVar(e, option.name, val.value, product.variants)
                                                             }}>
                                                             {val.value}
                                                         </li>
@@ -123,11 +129,40 @@ export default function ProductPopup ({product}) {
                                 )
                             })}
                         </div>
+                        <div className="single_product_quantity">
+                            {/*<input*/}
+                            {/*    onChange={(e, {value}) =>*/}
 
-                        <button className="popup_add_to_cart" onClick={addToCart}>Add to cart</button>
+                            {/*            setQuantity(Number(value))*/}
+                            {/*      }*/}
+                            {/*    type="number"*/}
+                            {/*    actionPosition='left'*/}
+                            {/*    placeholder='Search...'*/}
+                            {/*    defaultValue='1'*/}
+                            {/*/>*/}
+                        </div>
+                        <div className="single_product_btn">
+                            <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
+                            <button className="btn_favorites" >Favorites</button>
+                        </div>
+
+                        <div>
+                            <h6>Description & Details</h6>
+                           {product.description}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </MainContainer>
+            )
+
+})
+export default Product;
+export async function getServerSideProps({ query }) {
+    const productId = query.handle;
+
+       const product = await client.product.fetchByHandle(productId);
+       return { props: { product:JSON.parse(JSON.stringify(product))}};
+
 }
+

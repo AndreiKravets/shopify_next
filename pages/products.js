@@ -24,10 +24,8 @@ export default function products({products}) {
         )
     }
 
-    async function getProduct(id) {
-        const product = await client.product.fetch(id);
-        const productPopup = JSON.parse(JSON.stringify(product));
-        setProduct(productPopup)
+    async function getProduct(product) {
+        setProduct(product)
         setPopup(true)
     }
 
@@ -115,14 +113,20 @@ export default function products({products}) {
             }
         })
 
-     
-
      setFilteredProducts(newFilteredProducts)
      current_Products(1)
      setCurrentProducts(newFilteredProducts.slice(0, quantity_products))
      setPagination(createPagination(quantity_products,newFilteredProducts))
     }
 
+   function clearFilter() {
+   setCurrentFilter([[]])
+      setFilteredProducts(products)
+        current_Products(1)
+        setCurrentProducts(products.slice(0, quantity_products))
+        setPagination(createPagination(quantity_products,products))
+    }
+    console.log(products)
     return (
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
@@ -136,13 +140,14 @@ export default function products({products}) {
                 <div className="row">
                     <div className="col-md-2">
 
-                        {filter.map((option) => {
+                        {filter.map((option, index) => {
                             return (
-                                <ul className="products_filter"><h5>{option.name}</h5>
-                                    {option.values.map((value) => {
+                                <ul className="products_filter" key={index}><h5>{option.name}</h5>
+                                    {option.values.map((value, index) => {
                                         return (
 
                                             <li
+                                                key={index}
                                                 onClick={() => set_current_filter(option.name, value)}
                                                 className={currentFilter[0].some(e => (e == value)) == true ? 'active' : ''}
                                             >
@@ -156,17 +161,24 @@ export default function products({products}) {
                         })}
                     </div>
                     <div className="col-md-10">
+                    <div className="row">
+                                    <div className="col-12 btn_clear_filter">
+                                    <button onClick={clearFilter}>Clear Filter</button>
+                                    </div>
+                                    </div>
                         <div className="row">
                             {currentProducts.map((product, index) => {
 
                                 return (
                                     <div className="col-md-4"
-                                         onClick={() => getProduct(product.id)
-                                         }>
+                                         onClick={() => getProduct(product)
+                                         }
+                                         key={index}>
                                         <Card
                                             images={product.images[0].src}
                                             index={index}
                                             id={product.id}
+                                            handle={product.handle}
                                             title={product.title}
                                             description={product.description}
                                             price={product.variants[0].price}
@@ -182,7 +194,7 @@ export default function products({products}) {
                     <ul>
                         {pagination.map((index) => {
                             return (
-                                <li onClick={() => current_Products(index)}>{index}</li>
+                                <li key={index} onClick={() => current_Products(index)}>{index}</li>
                             )
                         })}
                     </ul>

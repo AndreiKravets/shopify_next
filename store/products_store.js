@@ -10,7 +10,7 @@ class Products_store {
 
 
     count = 0;
-    allProducts = "1";
+    allProducts = 1;
     allCollections = "1";
 
         // client.collection.fetchAllWithProducts().then((collections) => {collections = JSON.parse(JSON.stringify(collections)); return collections});

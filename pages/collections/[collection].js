@@ -56,7 +56,8 @@ console.log(products)
                         return (
                             <div className="col-md-4"
                                  onClick={() => getProduct(product.id)
-                                 }>
+                                 }
+                                 key={index}>
                                 <Card
                                     images =  {product.images[0].src}
                                     index = {index}
@@ -75,7 +76,7 @@ console.log(products)
                         {pagination.map((index)=>{
                             return(
                                 //  <link href={`/products/${index}`}>{index}</link>
-                                <li onClick={()=>current_Products(index)}>{index}</li>
+                                <li onClick={()=>current_Products(index)} key={index}>{index}</li>
                             )
                         })}
                     </ul>
