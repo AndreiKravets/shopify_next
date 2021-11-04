@@ -1,15 +1,12 @@
-import React, {useState} from 'react';
-import {useRouter} from "next/router";
-import MainContainer from "../../components/MainContainer";
-import Link from "next/link"
+import React, {useState} from 'react'
+import {useRouter} from "next/router"
+import MainContainer from "../../components/MainContainer"
 import {client} from "../../utils/shopify"
 import Card from "../../components/Card"
 import ProductPopup from "../../components/ProductPopup"
-import { toJS } from 'mobx';
-// import products_store from "../store/products_store";
 
 
-export default function products({collections}) {
+const CollectionPage = ({collections}) => {
     const router = useRouter();
     const collectionHandle = router.query.collection;
     console.log(collectionHandle)
@@ -87,6 +84,7 @@ console.log(products)
     )
 }
 
+export default CollectionPage
 
 export async function getServerSideProps() {
     const collection = await client.collection.fetchAllWithProducts()
