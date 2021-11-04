@@ -8,7 +8,7 @@ import {toJS} from 'mobx';
 import products_store from "../store/products_store";
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
 
-export default function products({products}) {
+const Products = ({products}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
@@ -204,6 +204,7 @@ export default function products({products}) {
     )
 }
 
+export default Products
 
 export async function getServerSideProps() {
     const products = await client.product.fetchAll()

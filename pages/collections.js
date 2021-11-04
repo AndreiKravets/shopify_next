@@ -8,7 +8,7 @@ import { toJS } from 'mobx';
 import products_store from "../store/products_store";
 
 
-export default function collections({products}) {
+const Collections = ({products}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
@@ -77,7 +77,7 @@ export default function collections({products}) {
     )
 }
 
-
+export default Collections
 export async function getServerSideProps() {
     const collections = await client.collection.fetchAllWithProducts()
     return {props: {products: JSON.parse(JSON.stringify(collections))}}
