@@ -95,7 +95,7 @@ const Product = observer( ({product})=> {
                                 return (
                                     <div className="product_options" key={index}>
                                         <div><span>{option.name}</span></div>
-                                        <ul  id={option.name}>
+                                        <ul id={option.name}>
                                             { option.values.map((val, index) => {
                                                 if (index == 0) {
                                                     return (

@@ -72,7 +72,6 @@ console.log(products)
                     <ul>
                         {pagination.map((index)=>{
                             return(
-                                //  <link href={`/products/${index}`}>{index}</link>
                                 <li onClick={()=>current_Products(index)} key={index}>{index}</li>
                             )
                         })}

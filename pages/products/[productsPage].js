@@ -55,7 +55,8 @@ const ProductsPage = ({products}) => {
                         return (
                             <div className="col-md-4"
                                  onClick={() => getProduct(product.id)
-                                 }>
+                                 }
+                                 key={index}>
                                 <Card
                                     images =  {product.images[0].src}
                                     index = {index}
@@ -73,7 +74,7 @@ const ProductsPage = ({products}) => {
                     <ul>
                         {pagination.map((index)=>{
                             return(
-                                <li onClick={()=>current_Products(index)}>{index}</li>
+                                <li onClick={()=>current_Products(index)} key={index}>{index}</li>
                             )
                         })}
                     </ul>
