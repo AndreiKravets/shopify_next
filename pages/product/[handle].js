@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {client} from "../../utils/shopify"
-import Router , {useRouter}  from 'next/router';
 import { useState } from "react";
 import MainContainer from "../../components/MainContainer";
 import cart_store from "../../store/cart_store";
-import {toJS} from "mobx";
 import {observer} from "mobx-react-lite";
 
 const Product = observer( ({product})=> {

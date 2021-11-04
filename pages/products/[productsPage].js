@@ -9,7 +9,7 @@ import { toJS } from 'mobx';
 import products_store from "../../store/products_store";
 
 
-export default function products({products}) {
+const ProductsPage = ({products}) => {
     const router = useRouter();
     const quantity_products = 6;
     const pageId = router.query.productsPage;
@@ -84,7 +84,7 @@ export default function products({products}) {
     )
 }
 
-
+export default ProductsPage
 export async function getServerSideProps() {
     const products = await client.product.fetchAll()
     return {props: {products: JSON.parse(JSON.stringify(products))}}

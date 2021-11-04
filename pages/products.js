@@ -126,7 +126,6 @@ const Products = ({products}) => {
         setCurrentProducts(products.slice(0, quantity_products))
         setPagination(createPagination(quantity_products,products))
     }
-    console.log(products)
     return (
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
