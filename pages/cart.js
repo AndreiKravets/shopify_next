@@ -8,7 +8,7 @@ import {observer} from "mobx-react-lite";
 import cart_store from "../store/cart_store";
 
 
-const Cart =  observer( ({products})=> {
+const Cart =  observer( ()=> {
 
          const [loaded, setLoaded] = useState(true)
          const [cart, setCart] = useState('')
@@ -87,8 +87,3 @@ const Cart =  observer( ({products})=> {
     })
 
 export default Cart;
-
-export async function getServerSideProps() {
-    const products = await client.product.fetchAll()
-    return {props: {products: JSON.parse(JSON.stringify(products))}}
-}
