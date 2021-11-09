@@ -1,0 +1,16 @@
+{
+  "name": "Shopify PWA",
+  "short_name": "Shopify",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "205x56",
+      "type": "logo/svg"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
