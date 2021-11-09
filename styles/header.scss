@@ -124,13 +124,15 @@
             margin-left: 26px;
           }
           a{
-            display: inline-block;
             vertical-align:bottom;
             color: $white;
             font-weight: 500;
             font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 3px;
+            height: 100%;
+            display: flex;
+            align-items: center;
             @include _media-big-down() {
               font-size: 13px;
               text-transform: uppercase;
