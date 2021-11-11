@@ -1,8 +1,5 @@
 import React from 'react'
 import Link from "next/link"
-import {client} from "../utils/shopify";
-import { toJS } from 'mobx';
-import products_store from "../store/products_store";
 import {observer} from "mobx-react-lite";
 
 const Menu = observer(()=>  {
