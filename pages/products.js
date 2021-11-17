@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import MainContainer from "../components/MainContainer";
 import Link from "next/link"
-import {client} from "../utils/shopify"
+import {shopifyClient} from "../utils/shopify"
 import Card from "../components/Card"
 import ProductPopup from "../components/ProductPopup"
 import {toJS} from 'mobx';
@@ -206,6 +206,6 @@ const Products = ({products}) => {
 export default Products
 
 export async function getServerSideProps() {
-    const products = await client.product.fetchAll()
+    const products = await shopifyClient.product.fetchAll()
     return {props: {products: JSON.parse(JSON.stringify(products))}}
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {client} from "../utils/shopify";
+import {shopifyClient} from "../utils/shopify";
 import cart_store from "../store/cart_store";
 
 export default function ProductPopup ({product}) {
@@ -57,11 +57,11 @@ export default function ProductPopup ({product}) {
         let checkoutId = storage.getItem("checkoutId");
         console.log(checkoutId);
         if (!checkoutId) {
-            const checkout = await client.checkout.create();
+            const checkout = await shopifyClient.checkout.create();
             checkoutId = checkout.id;
             storage.setItem('checkoutId', checkoutId);
         }
-        const cart = await client.checkout.addLineItems(checkoutId, [{
+        const cart = await shopifyClient.checkout.addLineItems(checkoutId, [{
             variantId: variants.id,
             quantity: quantity
         }])

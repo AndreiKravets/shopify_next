@@ -1,19 +1,24 @@
 import MainContainer from "../components/MainContainer";
+import Prismic from "@prismicio/client";
 
-export default function About({about}) {
-
-console.log(about.content.title)
+export default function About({ data }) {
+const about = data.results[0].data
+    console.log(about)
     return (
         <MainContainer>
             <div className="container-fluid about_top_section">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">
-                         <h1>{about.content.title}</h1>
-                         {about.content.desctiption}
+                         <h1>{about.title[0].text}</h1>
+                            {about.content.map((paragraph, index) => {
+                                return (
+                                    <p key={index}>{paragraph.text}</p>
+                                )
+                            })}
                         </div>
                         <div className="col-md-6">
-                            <img src={about.content.image.filename} alt=""/>
+                            <img src={about.banner.url} alt={`${about.banner.alt}`}/>
                         </div>
                     </div>
                 </div>
@@ -23,8 +28,7 @@ console.log(about.content.title)
 }
 
 export async function getServerSideProps() {
-    const about = await fetch(
-        'https://api.storyblok.com/v2/cdn/stories/about?version=draft&token=1deDSpUePICJvYfDQ34QGQtt'
-    ).then((response) => response.json())
-    return {props: {about: about.story}}
+    const client = Prismic.client("https://paspartoo.prismic.io/api/v2", {})
+    const data = await client.query(Prismic.Predicates.at('document.type', 'about'))
+    return {props: {data: data}}
 }

@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
-import {client} from "../../utils/shopify"
+import {shopifyClient} from "../../utils/shopify"
 import { useState } from "react";
 import MainContainer from "../../components/MainContainer";
 import cart_store from "../../store/cart_store";
 import {observer} from "mobx-react-lite";
+import Prismic from "@prismicio/client";
 
-const Product = observer( ({product})=> {
+const Product = observer( ({product, data})=> {
     console.log(product)
+    console.log(data)
+    var productData = false
+    if (data.results.length > 0){
+         productData = data.results[0].data
+    }
 
     const initOptions = [];
     product.options.map((option) => {
@@ -62,11 +68,11 @@ const Product = observer( ({product})=> {
         let checkoutId = storage.getItem("checkoutId");
         console.log(checkoutId);
         if (!checkoutId) {
-            const checkout = await client.checkout.create();
+            const checkout = await shopifyClient.checkout.create();
             checkoutId = checkout.id;
             storage.setItem('checkoutId', checkoutId);
         }
-        const cart = await client.checkout.addLineItems(checkoutId, [{
+        const cart = await shopifyClient.checkout.addLineItems(checkoutId, [{
             variantId: variants.id,
             quantity: quantity
         }])
@@ -148,6 +154,9 @@ const Product = observer( ({product})=> {
                             <h6>Description & Details</h6>
                            {product.description}
                         </div>
+                        <div>
+                            {productData == false ? '' :  <h1 style={{color: `${productData.color}`}}>{productData.title[0].text}</h1>}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,10 +166,15 @@ const Product = observer( ({product})=> {
 })
 export default Product;
 export async function getServerSideProps({ query }) {
-    const productId = query.handle;
+       const productId = query.handle;
+       const product = await shopifyClient.product.fetchByHandle(productId);
 
-       const product = await client.product.fetchByHandle(productId);
-       return { props: { product:JSON.parse(JSON.stringify(product))}};
+       const client = Prismic.client("https://paspartoo.prismic.io/api/v2", {})
+       const data = await client.query(Prismic.Predicates.at('document.type', productId))
 
+       return { props: {
+               product:JSON.parse(JSON.stringify(product)),
+               data: data
+       }};
 }
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {client} from "../utils/shopify"
+import {shopifyClient} from "../utils/shopify"
 import Router, {useRouter} from 'next/router';
 import { BiTrashAlt } from "react-icons/bi";
 import Head from "next/head";
@@ -42,7 +42,7 @@ const Cart =  observer( ()=> {
                     setCart(cart)
                     setCartArr(cart_arr)
                 storage.setItem('cart', JSON.stringify(cart))
-                client.checkout.removeLineItems(checkoutId, id).then((checkout) => {
+                shopifyClient.checkout.removeLineItems(checkoutId, id).then((checkout) => {
                 });
             }
         })

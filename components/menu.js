@@ -17,9 +17,6 @@ const Menu = observer(()=>  {
                 <li className="menu_item_has_children">
                     <Link href="/collections">Collections</Link>
                 </li>
-                <li>
-                    <Link href="/blog">Blog</Link>
-                </li>
             </ul>
         )
 })

@@ -1,7 +1,6 @@
 import React from 'react'
 import { FaRegEye, FaRegHeart, FaCartArrowDown } from 'react-icons/fa'
 import Link from "next/link"
-import {client} from "../utils/shopify";
 
 export default function Card (props) {
     const {index, id,handle, title,images,price} = props;

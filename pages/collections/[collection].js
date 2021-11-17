@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useRouter} from "next/router"
 import MainContainer from "../../components/MainContainer"
-import {client} from "../../utils/shopify"
+import {shopifyClient} from "../../utils/shopify"
 import Card from "../../components/Card"
 import ProductPopup from "../../components/ProductPopup"
 
@@ -20,7 +20,7 @@ const CollectionPage = ({collections}) => {
     const [currentProducts, setCurrentProducts] = useState(products.slice(0, quantity_products));
 console.log(products)
     async function getProduct(id){
-        const product = await client.product.fetch(id);
+        const product = await shopifyClient.product.fetch(id);
         const productPopup = JSON.parse(JSON.stringify(product));
         setProduct(productPopup)
         setPopup(true)
@@ -86,6 +86,6 @@ console.log(products)
 export default CollectionPage
 
 export async function getServerSideProps() {
-    const collection = await client.collection.fetchAllWithProducts()
+    const collection = await shopifyClient.collection.fetchAllWithProducts()
     return {props: {collections: JSON.parse(JSON.stringify(collection))}}
 }
