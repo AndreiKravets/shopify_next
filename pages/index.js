@@ -4,6 +4,7 @@ import Prismic from "@prismicio/client";
 import Slider from "react-slick";
 import Link from "next/link";
 import React from "react";
+import Card from "../components/Card"
 
 
 export default function Home({collections,homepage,slider}) {
@@ -12,8 +13,12 @@ export default function Home({collections,homepage,slider}) {
     console.log(slider)
     homepage = homepage.results[0].data
     slider = slider.results
-
-        var settings = {
+    const home_collections = collections.filter(collection => collection.handle == 'chain' || collection.handle == 'combos' || collection.handle == 'bracelets')
+    const temp_all_products = collections.filter(collection => collection.handle == 'all-products')
+    const home_all_products = temp_all_products[0].products.slice(0,8)
+    const temp_under_products = collections.filter(collection => collection.handle == 'under-200')
+    const home_under_products = temp_all_products[0].products.slice(0,4)
+        const settings = {
             dots: true,
             infinite: true,
             speed: 500,
@@ -53,7 +58,7 @@ export default function Home({collections,homepage,slider}) {
         </div>
         <div className="container">
           <div className="row">
-            {collections.map((product, index) => {
+            {home_collections.map((product, index) => {
               return (
                 <div className="col-md-4" key={index}>
                     <div style={{backgroundImage: `url(${product.image.src})`}}>
@@ -65,6 +70,54 @@ export default function Home({collections,homepage,slider}) {
              })
             }
           </div>
+        </div>
+        <div className='container'>
+            <div className='d-flex'>
+                {homepage.legendary_text[0].text}
+                <img src={homepage.legendary_image.url} alt=""/>
+            </div>
+        </div>
+        <div className="container">
+            <h1>Best Sellers</h1>
+            <div className="row">
+                {home_all_products.map((product, index) => {
+                    return (
+                        <div className="col-md-3" key={index}>
+                            <Card
+                                images={product.images[0].src}
+                                index={index}
+                                id={product.id}
+                                handle={product.handle}
+                                title={product.title}
+                                description={product.description}
+                                price={product.variants[0].price}
+                            />
+                        </div>
+                    )
+                })
+                }
+            </div>
+        </div>
+        <div className="container">
+            <h1>Items Under $200</h1>
+            <div className="row">
+                {home_under_products.map((product, index) => {
+                    return (
+                        <div className="col-md-3" key={index}>
+                            <Card
+                                images={product.images[0].src}
+                                index={index}
+                                id={product.id}
+                                handle={product.handle}
+                                title={product.title}
+                                description={product.description}
+                                price={product.variants[0].price}
+                            />
+                        </div>
+                    )
+                })
+                }
+            </div>
         </div>
     </MainContainer>
   )
