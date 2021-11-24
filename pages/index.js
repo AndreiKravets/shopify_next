@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import Link from "next/link";
 import React from "react";
 import Card from "../components/Card"
+import InstagramEmbed from 'react-instagram-embed';
+
 
 
 export default function Home({collections,homepage,slider}) {
@@ -39,7 +41,7 @@ export default function Home({collections,homepage,slider}) {
                             <h1>{slide.data.title[0].text}</h1>
                             {slide.data.subtitle.map((paragraph, index) => {
                                 return (
-                                    <p key={index}>{paragraph.text}</p>
+                                paragraph.text
                                 )
                             })}
                         </div>
@@ -118,6 +120,22 @@ export default function Home({collections,homepage,slider}) {
                 })
                 }
             </div>
+        </div>
+
+        <div className="container">
+            <InstagramEmbed
+                url='https://www.instagram.com/'
+                clientAccessToken='123|456'
+                maxWidth={320}
+                hideCaption={true}
+                containerTagName='div'
+                protocol=''
+                injectScript
+                onLoading={() => {}}
+                onSuccess={() => {}}
+                onAfterRender={() => {}}
+                onFailure={() => {}}
+            />
         </div>
     </MainContainer>
   )

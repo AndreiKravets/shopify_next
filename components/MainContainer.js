@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Header from "./Header";
+import Footer from "./Footer";
 
 
 
@@ -15,6 +16,7 @@ export default function MainContainer({children, title}){
             <div id="root">
                     <Header/>
                     {children}
+                    <Footer/>
             </div>
         </>
     )
