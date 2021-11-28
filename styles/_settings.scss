@@ -1,5 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@font-face {
+  font-family: 'Futura PT';
+  src: url('../public/fonts/FuturaPT-Book.eot');
+  src: url('../public/fonts/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+  url('../public/fonts/FuturaPT-Book.woff2') format('woff2'),
+  url('../public/fonts/FuturaPT-Book.woff') format('woff'),
+  url('../public/fonts/FuturaPT-Book.ttf') format('truetype'),
+  url('../public/fonts/FuturaPT-Book.svg#FuturaPT-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura PT';
+  src: url('../public/fonts/FuturaPT-Medium.eot');
+  src: url('../public/fonts/FuturaPT-Medium.eot?#iefix') format('embedded-opentype'),
+  url('../public/fonts/FuturaPT-Medium.woff2') format('woff2'),
+  url('../public/fonts/FuturaPT-Medium.woff') format('woff'),
+  url('../public/fonts/FuturaPT-Medium.ttf') format('truetype'),
+  url('../public/fonts/FuturaPT-Medium.svg#FuturaPT-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura PT';
+  src: url('../public/fonts/FuturaPT-Heavy.eot');
+  src: url('../public/fonts/FuturaPT-Heavy.eot?#iefix') format('embedded-opentype'),
+  url('../public/fonts/FuturaPT-Heavy.woff2') format('woff2'),
+  url('../public/fonts/FuturaPT-Heavy.woff') format('woff'),
+  url('../public/fonts/FuturaPT-Heavy.ttf') format('truetype'),
+  url('../public/fonts/FuturaPT-Heavy.svg#FuturaPT-Heavy') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* color */
 $brand-primary: #0C1821 !default;
@@ -69,25 +105,25 @@ $h6-sm: 15px !default;
 $h6-xs: 15px !default;
 
 /* base */
-$base: 16px !default;
-$base-big: 16px !default;
-$base-lg: 16px !default;
-$base-md: 15px !default;
-$base-sm: 14px !default;
-$base-xs: 14px !default;
+$base: 18px !default;
+$base-big: 18px !default;
+$base-lg: 18px !default;
+$base-md: 18px !default;
+$base-sm: 16px !default;
+$base-xs: 16px !default;
 
 /* ps */
-$ps: 14px !default;
-$ps-big: 14px !default;
-$ps-lg: 14px !default;
-$ps-md: 14px !default;
-$ps-sm: 14px !default;
-$ps-xs: 14px !default;
+$ps: 16px !default;
+$ps-big: 16px !default;
+$ps-lg: 16px !default;
+$ps-md: 16px !default;
+$ps-sm: 16px !default;
+$ps-xs: 16px !default;
 
 /* font-family */
 
-$family-base:  'Poppins', 'sans-serif' !default;
-$family-title:  'Montserrat', 'sans-serif'!default;
+$family-title:  'Futura PT', 'sans-serif'!default;
+$family-base: "Futura PT", "sans-serif" !default;
 
 /* breakpoints */
 $screen-big-min: 1680px !default;

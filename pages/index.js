@@ -21,9 +21,11 @@ export default function Home({collections,homepage,slider}) {
     const temp_under_products = collections.filter(collection => collection.handle == 'under-200')
     const home_under_products = temp_all_products[0].products.slice(0,4)
         const settings = {
-            dots: true,
+            dots: false,
+            arrows: false,
             infinite: true,
             speed: 500,
+            autoplay: true,
             slidesToShow: 1,
             slidesToScroll: 1
         }
@@ -31,13 +33,13 @@ export default function Home({collections,homepage,slider}) {
   return (
     <MainContainer>
         <div className="container-fluid home_top_section">
-            <div className="container">
+
                 <Slider {...settings}>
             {slider.map((slide,index) => {
                 return(
-
+                    <div className="container">
                     <div className="row" key={index}>
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
                             {slide.data.subtitle.map((paragraph, index) => {
                                 return (
@@ -45,38 +47,37 @@ export default function Home({collections,homepage,slider}) {
                                 )
                             })}
                         </div>
-                        <div className="col-md-6">
-                            <img src={slide.data.big_image.url} />
+                        <div className="col-md-8"style={{backgroundImage: `url(${slide.data.big_image.url})`}}>
                             <img src={slide.data.small_image.url} />
                         </div>
                     </div>
-
+                    </div>
                 )
 
 
             })}
                 </Slider>
-            </div>
+
         </div>
-        <div className="container">
+        <div className="container home_collections_section">
+            <img src="bg_legendary.jpg" alt="bg_legendary" className="home_bg_legendary"/>
           <div className="row">
             {home_collections.map((product, index) => {
               return (
                 <div className="col-md-4" key={index}>
                     <div style={{backgroundImage: `url(${product.image.src})`}}>
                         <Link href={`/collections/${index}`}>{product.handle}</Link>
-                        <h5>Look More</h5>
+                        <h6>Look More</h6>
                     </div>
                 </div>
               )
              })
             }
           </div>
-        </div>
-        <div className='container'>
-            <div className='d-flex'>
-                {homepage.legendary_text[0].text}
-                <img src={homepage.legendary_image.url} alt=""/>
+            <div className='row'>
+                <div className="col-md-2"></div>
+                <div className="col-md-5">{homepage.legendary_text[0].text}</div>
+                <div className="col-md-5"><img src={homepage.legendary_image.url} alt=""/></div>
             </div>
         </div>
         <div className="container">
