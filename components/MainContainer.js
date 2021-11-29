@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
+import {motion} from "framer-motion";
+import React from "react";
 
 
 
-export default function MainContainer({children, title}){
+export default function MainContainer({children, title,isVisible}){
     return (
         <>
             <Head>
@@ -15,7 +17,13 @@ export default function MainContainer({children, title}){
             </Head>
             <div id="root">
                     <Header/>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
                     {children}
+                </motion.div>
                     <Footer/>
             </div>
         </>

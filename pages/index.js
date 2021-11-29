@@ -6,10 +6,11 @@ import Link from "next/link";
 import React from "react";
 import Card from "../components/Card"
 import InstagramEmbed from 'react-instagram-embed';
+import {motion} from "framer-motion";
 
 
 
-export default function Home({collections,homepage,slider}) {
+export default function Home({collections,homepage,slider,isVisible}) {
     console.log(collections)
     console.log(homepage)
     console.log(slider)
@@ -41,6 +42,18 @@ export default function Home({collections,homepage,slider}) {
                     <div className="row" key={index}>
                         <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
+                            <motion.div
+                                // animate={{ rotate: 360 }}
+                                transition={{ duration: 2 }}
+                                animate={{ opacity: isVisible ? 0 : 1 }}
+                            >wewewe</motion.div>
+                            <motion.div
+                                drag="x"
+                                dragConstraints={{ left: -100, right: 100 }}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}>
+                                SCALE
+                            </motion.div>
                             {slide.data.subtitle.map((paragraph, index) => {
                                 return (
                                 paragraph.text
