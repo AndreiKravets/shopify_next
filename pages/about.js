@@ -2,6 +2,7 @@ import MainContainer from "../components/MainContainer";
 import Prismic from "@prismicio/client";
 import {motion} from "framer-motion";
 import React from "react";
+import Image from 'next/image'
 
 export default function About({ data }) {
 const about = data.results[0].data
@@ -20,25 +21,9 @@ const about = data.results[0].data
             }
         }
     };
-    const backVariants = {
-        exit: {
-            x: 100,
-            opacity: 0,
-            transition: {
-                duration: 0.5,
-                ease: easing
-            }
-        },
-        enter: {
-            x: 0,
-            opacity: 1,
-            transition: {
-                delay: 0.5,
-                duration: 0.5,
-                ease: easing
-            }
-        }
-    };
+    const myLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
     return (
         <MainContainer>
             <div className="container-fluid about_top_section">
@@ -53,15 +38,17 @@ const about = data.results[0].data
                             })}
                         </div>
                         <div className="col-md-6">
-                            <motion.img variants={imageVariants} src={about.banner.url} />
-                            <img src={about.banner.url} alt={`${about.banner.alt}`}/>
+                            <Image
+                                loader={myLoader}
+                                src={`${about.banner.url}`}
+                                alt={about.banner.alt}
+                                width={500}
+                                height={500}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-            <motion.div variants={backVariants}>
-                    <h1>Back to list</h1>
-            </motion.div>
         </MainContainer>
     )
 }
