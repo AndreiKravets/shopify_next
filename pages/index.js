@@ -4,8 +4,7 @@ import Prismic from "@prismicio/client";
 import Slider from "react-slick";
 import Link from "next/link";
 import React from "react";
-import Card from "../components/Card"
-import InstagramEmbed from 'react-instagram-embed';
+import Card from "../components/Card";
 import {motion} from "framer-motion";
 
 
@@ -135,22 +134,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 }
             </div>
         </div>
-
-        <div className="container">
-            <InstagramEmbed
-                url='https://www.instagram.com/'
-                clientAccessToken='123|456'
-                maxWidth={320}
-                hideCaption={true}
-                containerTagName='div'
-                protocol=''
-                injectScript
-                onLoading={() => {}}
-                onSuccess={() => {}}
-                onAfterRender={() => {}}
-                onFailure={() => {}}
-            />
-        </div>
+        
     </MainContainer>
   )
 }
