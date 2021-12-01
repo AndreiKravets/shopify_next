@@ -134,7 +134,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 }
             </div>
         </div>
-        
+
     </MainContainer>
   )
 }
