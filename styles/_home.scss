@@ -57,17 +57,29 @@
     z-index: -1;
   }
   .col-md-4{
-    div{
+    .home_collections_section_inner{
       background-size: cover;
       background-position: center;
       height: 300px;
       display: flex;
       align-items: flex-end;
       position: relative;
-
+     .d-flex{
+       width: 100%;
+       align-items: center;
+       justify-content: space-between;
+       padding: 20px 30px;
+       svg{
+         color: #E7CF8B;
+         transform: rotate(315deg);
+         font-size: 35px;
+       }
+     }
       h6{
         color: $brand-btn;
-        padding: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1px;
         text-transform: uppercase;
       }
       a{
@@ -87,5 +99,8 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    img{
+      mix-blend-mode: multiply;
+    }
   }
 }

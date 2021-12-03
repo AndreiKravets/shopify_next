@@ -7,6 +7,8 @@ import ProductPopup from "../components/ProductPopup"
 import {toJS} from 'mobx';
 import products_store from "../store/products_store";
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
+import {motion} from "framer-motion";
+
 
 const Products = ({products}) => {
     const quantity_products = 6;
@@ -165,6 +167,7 @@ const Products = ({products}) => {
                                     <button onClick={clearFilter}>Clear Filter</button>
                                     </div>
                                     </div>
+                                <motion.div initial="initial" animate="enter" exit="exit" variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
                         <div className="row">
                             {currentProducts.map((product, index) => {
 
@@ -187,6 +190,7 @@ const Products = ({products}) => {
                             })
                             }
                         </div>
+                         </motion.div>
                     </div>
                 </div>
                 <div className="row products_pagination">
@@ -199,6 +203,7 @@ const Products = ({products}) => {
                     </ul>
                 </div>
             </div>
+
         </MainContainer>
     )
 }

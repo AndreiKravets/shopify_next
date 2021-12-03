@@ -3,9 +3,10 @@ import {shopifyClient} from "../utils/shopify";
 import Prismic from "@prismicio/client";
 import Slider from "react-slick";
 import Link from "next/link";
-import React from "react";
+import React, {Fragment} from "react";
 import Card from "../components/Card";
 import {motion} from "framer-motion";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 
 
@@ -42,11 +43,6 @@ export default function Home({collections,homepage,slider,isVisible}) {
                         <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
                             <motion.div
-                                // animate={{ rotate: 360 }}
-                                transition={{ duration: 2 }}
-                                animate={{ opacity: isVisible ? 0 : 1 }}
-                            >wewewe</motion.div>
-                            <motion.div
                                 drag="x"
                                 dragConstraints={{ left: -100, right: 100 }}
                                 whileHover={{ scale: 1.1 }}
@@ -77,9 +73,13 @@ export default function Home({collections,homepage,slider,isVisible}) {
             {home_collections.map((product, index) => {
               return (
                 <div className="col-md-4" key={index}>
-                    <div style={{backgroundImage: `url(${product.image.src})`}}>
+                    <div className="home_collections_section_inner" style={{backgroundImage: `url(${product.image.src})`}}>
                         <Link href={`/collections/${index}`}>{product.handle}</Link>
-                        <h6>Look More</h6>
+                        <div className="d-flex">
+                            <h6>Look More</h6>
+                            <BiRightArrowAlt/>
+                        </div>
+
                     </div>
                 </div>
               )
