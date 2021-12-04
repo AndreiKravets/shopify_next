@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 /* color */
 $brand-primary: #0C1821 !default;
 $brand-secondary: #0b1a1d !default;
@@ -82,9 +84,10 @@ $ps-sm: 16px !default;
 $ps-xs: 16px !default;
 
 /* font-family */
-
-$family-title:  'Futura PT', 'sans-serif'!default;
-$family-base: "Futura PT", "sans-serif" !default;
+$family-base:  'Poppins', 'sans-serif' !default;
+$family-title:  'Montserrat', 'sans-serif'!default;
+//$family-title:  'Futura PT', 'sans-serif'!default;
+//$family-base: "Futura PT", "sans-serif" !default;
 
 /* breakpoints */
 $screen-big-min: 1680px !default;
