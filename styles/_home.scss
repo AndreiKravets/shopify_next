@@ -73,6 +73,7 @@
          color: #E7CF8B;
          transform: rotate(315deg);
          font-size: 35px;
+         z-index: 0;
        }
      }
       h6{
@@ -92,6 +93,7 @@
         color: white;
         font-weight: 500;
         letter-spacing: 0.2em;
+        z-index: 1;
       }
     }
   }
