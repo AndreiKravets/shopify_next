@@ -38,8 +38,8 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 <Slider {...settings}>
             {slider.map((slide,index) => {
                 return(
-                    <div className="container">
-                    <div className="row" key={index}>
+                    <div className="container" key={index}>
+                     <div className="row">
                         <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
                             <motion.div
@@ -58,7 +58,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                         <div className="col-md-8"style={{backgroundImage: `url(${slide.data.big_image.url})`}}>
                             <img src={slide.data.small_image.url} />
                         </div>
-                    </div>
+                     </div>
                     </div>
                 )
 
