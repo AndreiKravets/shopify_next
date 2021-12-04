@@ -5,6 +5,7 @@ import MainContainer from "../../components/MainContainer";
 import cart_store from "../../store/cart_store";
 import {observer} from "mobx-react-lite";
 import Prismic from "@prismicio/client";
+import Image from "next/image";
 
 const Product = observer( ({product, data})=> {
     console.log(product)
@@ -80,7 +81,9 @@ const Product = observer( ({product, data})=> {
         cart_store.setCount(cart.lineItems.length)
     };
 
-
+    const myLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
     return(
         <MainContainer>
             <div className="container single_product_container">
@@ -88,7 +91,14 @@ const Product = observer( ({product, data})=> {
                     <div className="col-6 single_product_image">
                         {product.images.map((iage,index) => {
                             return (
-                                <img src={iage.src} key={index}/>
+                                // <img src={iage.src} key={index}/>
+                            <Image
+                                loader={myLoader}
+                                src={iage.src} key={index}
+                                alt={iage.src}
+                                width={500}
+                                height={500}
+                            />
 
                             )
                         })}
