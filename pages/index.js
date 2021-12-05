@@ -42,13 +42,6 @@ export default function Home({collections,homepage,slider,isVisible}) {
                      <div className="row">
                         <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
-                            <motion.div
-                                drag="x"
-                                dragConstraints={{ left: -100, right: 100 }}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}>
-                                SCALE
-                            </motion.div>
                             {slide.data.subtitle.map((paragraph, index) => {
                                 return (
                                 paragraph.text
