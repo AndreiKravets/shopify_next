@@ -176,6 +176,19 @@ const Products = ({products}) => {
                                          onClick={() => getProduct(product)
                                          }
                                          key={index}>
+                                            <motion.div initial="hidden" animate="visible" key={product.id} variants={{
+                                                         hidden: {
+                                                             scale: .8,
+                                                             opacity: 0
+                                                         },
+                                                         visible: {
+                                                             scale: 1,
+                                                             opacity: 1,
+                                                             transition: {
+                                                                 delay: .1
+                                                             }
+                                                         },
+                                                     }}>
                                         <Card
                                             images={product.images[0].src}
                                             index={index}
@@ -185,6 +198,7 @@ const Products = ({products}) => {
                                             description={product.description}
                                             price={product.variants[0].price}
                                         />
+                                       </motion.div>
                                     </div>
                                 )
                             })

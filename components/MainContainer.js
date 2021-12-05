@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
-import {motion} from "framer-motion";
+import {motion, AnimatePresence } from "framer-motion";
 import React from "react";
-import { AnimatePresence } from 'framer-motion'
+
+
 
 
 
@@ -11,7 +12,7 @@ export default function MainContainer({children, title,isVisible}){
     const variants = {
         hidden: { opacity: 0, x: -200, y: 0 },
         enter: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0, x: 0, y: -100 },
+        exit: { opacity: 1, x: -2000, y: -100 },
     }
     return (
         <>
@@ -21,6 +22,7 @@ export default function MainContainer({children, title,isVisible}){
             </Head>
             <div id="root">
                     <Header/>
+                <AnimatePresence>
                 <motion.main
                     variants={variants} // Pass the variant object into Framer Motion
                     initial="hidden" // Set the initial state to variants.hidden
@@ -31,6 +33,7 @@ export default function MainContainer({children, title,isVisible}){
                 >
                     {children}
                 </motion.main>
+                </AnimatePresence>
                     <Footer/>
             </div>
         </>
