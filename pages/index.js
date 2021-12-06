@@ -11,16 +11,14 @@ import { BiRightArrowAlt } from "react-icons/bi";
 
 
 export default function Home({collections,homepage,slider,isVisible}) {
-    console.log(collections)
-    console.log(homepage)
-    console.log(slider)
     homepage = homepage.results[0].data
     slider = slider.results
     const home_collections = collections.filter(collection => collection.handle == 'chain' || collection.handle == 'combos' || collection.handle == 'bracelets')
-    const temp_all_products = collections.filter(collection => collection.handle == 'all-products')
-    const home_all_products = temp_all_products[0].products.slice(0,8)
-    const temp_under_products = collections.filter(collection => collection.handle == 'under-200')
-    const home_under_products = temp_all_products[0].products.slice(0,4)
+    const all_products = collections.filter(collection => collection.handle == 'all-products')
+    const home_all_products = all_products[0].products.slice(0,8)
+    const under_products = collections.filter(collection => collection.handle == 'under-200')
+    const home_under_products = under_products[0].products.slice(0,4)
+    console.log(all_products)
         const settings = {
             dots: false,
             arrows: false,
@@ -61,13 +59,13 @@ export default function Home({collections,homepage,slider,isVisible}) {
 
         </div>
         <div className="container home_collections_section">
-            <img src="bg_legendary.jpg" alt="bg_legendary" className="home_bg_legendary"/>
-          <div className="row">
+              <img src="bg_legendary.jpg" alt="bg_legendary" className="home_bg_legendary"/>
+            <div className="row">
             {home_collections.map((product, index) => {
               return (
                 <div className="col-md-4" key={index}>
                     <div className="home_collections_section_inner" style={{backgroundImage: `url(${product.image.src})`}}>
-                        <Link href={`/collections/${index}`}>{product.handle}</Link>
+                        <Link href={`/collections/${product.handle}`}>{product.title}</Link>
                         <div className="d-flex">
                             <h6>Look More</h6>
                             <BiRightArrowAlt/>
@@ -78,15 +76,21 @@ export default function Home({collections,homepage,slider,isVisible}) {
               )
              })
             }
-          </div>
-            <div className='row'>
+            </div>
+            <div className='row home_collections_legendary'>
                 <div className="col-md-2"></div>
                 <div className="col-md-5">{homepage.legendary_text[0].text}</div>
                 <div className="col-md-5"><img src={homepage.legendary_image.url} alt=""/></div>
             </div>
         </div>
         <div className="container">
-            <h1>Best Sellers</h1>
+            <div className="home_product_title">
+                <div>
+                    <h6>Upgrade your fit</h6>
+                    <h2>Best Sellers</h2>
+                </div>
+                <Link href={`/collections/${all_products[0].handle}`}>View All</Link>
+            </div>
             <div className="row">
                 {home_all_products.map((product, index) => {
                     return (
@@ -107,7 +111,13 @@ export default function Home({collections,homepage,slider,isVisible}) {
             </div>
         </div>
         <div className="container">
-            <h1>Items Under $200</h1>
+            <div className="home_product_title">
+                <div>
+                    <h2>Items Under $200</h2>
+                </div>
+                <Link href={`/collections/${under_products[0].handle}`}>View All</Link>
+            </div>
+
             <div className="row">
                 {home_under_products.map((product, index) => {
                     return (

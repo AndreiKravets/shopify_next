@@ -10,7 +10,9 @@ const CollectionPage = ({collections}) => {
     const router = useRouter();
     const collectionHandle = router.query.collection;
     console.log(collectionHandle)
-    const products = collections[collectionHandle].products
+    // const products = collections[1].products
+    const collection = collections.filter(collection => collection.handle == collectionHandle)
+    const products = collection[0].products
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
@@ -19,6 +21,7 @@ const CollectionPage = ({collections}) => {
     const [allProducts, setAllProducts] = useState( products);
     const [currentProducts, setCurrentProducts] = useState(products.slice(0, quantity_products));
 console.log(products)
+console.log(collection)
     async function getProduct(id){
         const product = await shopifyClient.product.fetch(id);
         const productPopup = JSON.parse(JSON.stringify(product));
@@ -43,7 +46,7 @@ console.log(products)
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
                 <p>collection</p>
-                <h1>{collections[collectionHandle].handle}</h1>
+                <h1>{collection[0].title}</h1>
             </div>
             <div className="container products">
                 { popup == true ?  <div className="popup active" onClick={()=>{setPopup(false)}}><ProductPopup product={product}/></div> : <div className="popup"></div> }
