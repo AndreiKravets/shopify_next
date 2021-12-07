@@ -7,6 +7,7 @@ import React, {Fragment} from "react";
 import Card from "../components/Card";
 import {motion} from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
+import InstagramEmbed from 'react-instagram-embed';
 
 
 
@@ -28,7 +29,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
             slidesToShow: 1,
             slidesToScroll: 1
         }
-
+console.log(homepage)
   return (
     <MainContainer>
         <div className="container-fluid home_top_section">
@@ -83,7 +84,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 <div className="col-md-5"><img src={homepage.legendary_image.url} alt=""/></div>
             </div>
         </div>
-        <div className="container">
+        <div className="container home_product_container">
             <div className="home_product_title">
                 <div>
                     <h6>Upgrade your fit</h6>
@@ -110,7 +111,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 }
             </div>
         </div>
-        <div className="container">
+        <div className="container home_product_container">
             <div className="home_product_title">
                 <div>
                     <h2>Items Under $200</h2>
@@ -137,7 +138,19 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 }
             </div>
         </div>
-
+        <InstagramEmbed
+            url='https://www.instagram.com/p/B8qn8hJFD5K/'
+            clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'
+            maxWidth={320}
+            hideCaption={true}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+        />
     </MainContainer>
   )
 }

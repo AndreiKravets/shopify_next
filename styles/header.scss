@@ -1,4 +1,3 @@
-@import "settings.scss";
 .header{
   height: auto;
 }
@@ -81,6 +80,8 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
+        margin-left: -20px;
+        display: block !important;
       }
       @include _media-md-down() {
         z-index: 5;

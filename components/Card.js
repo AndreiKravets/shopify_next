@@ -31,8 +31,8 @@ export default function Card (props) {
                     </div>
                 </div>
                        <div onClick={e => e.stopPropagation()}>
-                            <Link href={`/product/${handle}`}>{title}</Link>
-                            <Link href={`/product/${handle}`}><strong>{price} $</strong></Link>
+                                   <Link href={`/product/${handle}`}>{title}</Link>
+                           <Link href={`/product/${handle}`}><a className='card_price'>{`${price} $`}</a></Link>
                         </div>
         </div>
     )

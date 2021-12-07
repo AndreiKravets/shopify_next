@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Link from "next/link"
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP } from 'react-icons/fa'
+import { BsArrowRight } from "react-icons/bs";
 
 export default function Footer () {
     return(
@@ -9,8 +10,7 @@ export default function Footer () {
                 <div className="row">
                 <div className="col-md-4">
                     <img src="logo.svg" alt=""/>
-                    Tracked delivery, easy returns
-                    and a lifetime guarantee.
+                    <p>Tracked delivery, easy returns and a lifetime guarantee.</p>
                     <ul id="menu-social-link" className="footer_social">
                         <li><a href="#"><FaFacebookF/></a></li>
                         <li><a href="#"><FaTwitter/></a></li>
@@ -52,8 +52,13 @@ export default function Footer () {
                         </li>
                     </ul>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 footer_newsletter">
                     <h6>Join Our Newsletter</h6>
+                    <p>Get the latest news, updates, and promotions sent straight to your inbox.</p>
+                    <form action="" method="POST">
+                        <input id="name" type="text" autoComplete="name" placeholder="Email" required/>
+                        <button type="submit">Subscribe <BsArrowRight/> </button>
+                    </form>
                 </div>
                 </div>
             </div>

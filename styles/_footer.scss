@@ -1,0 +1,91 @@
+footer{
+  padding-top: 40px;
+  padding-bottom: 50px;
+  margin-top: 20px;
+  h6{
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .col-md-4{
+    img{
+      margin-left: -20px;
+      margin-bottom: 10px;
+    }
+    p{
+      max-width: 250px;
+      color: #868686;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .footer_social{
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      max-width: 200px;
+      a{
+        color: $brand-btn;
+        font-size: 25px;
+        svg{
+          stroke: black;
+          stroke-width: 16;
+          stroke-linecap: round;
+        }
+        &:hover{
+          color: black;
+        }
+      }
+    }
+  }
+  .footer_newsletter{
+    p{
+      max-width: 340px;
+      margin-top: 20px;
+    }
+    form{
+      display: flex;
+      justify-content: right;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      input{
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #8D8D8D;
+        padding-bottom: 10px;
+        color: #B0B0B0;
+        font-size: 22px;
+        &::placeholder{
+         color: #B0B0B0;
+        }
+      }
+      button{
+        background: none;
+        text-transform: uppercase;
+        color: $brand-btn;
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        font-weight: 600;
+        border: none;
+        margin-top: 15px;
+        letter-spacing: 1.5px;
+        svg{
+          margin-left: 20px;
+          font-size: 35px;
+        }
+      }
+    }
+
+  }
+  .col-md-2{
+    ul{
+      margin-top: 20px;
+      li{
+        margin-bottom: 13px;
+        a{
+          color: #868686;
+        }
+      }
+    }
+  }
+}
