@@ -7,6 +7,7 @@ import React, {Fragment} from "react";
 import Card from "../components/Card";
 import {motion} from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
+import { BsArrowRight } from "react-icons/bs";
 import InstagramEmbed from 'react-instagram-embed';
 
 
@@ -19,7 +20,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
     const home_all_products = all_products[0].products.slice(0,8)
     const under_products = collections.filter(collection => collection.handle == 'under-200')
     const home_under_products = under_products[0].products.slice(0,4)
-    console.log(all_products)
+    console.log(homepage)
         const settings = {
             dots: false,
             arrows: false,
@@ -138,19 +139,40 @@ console.log(homepage)
                 }
             </div>
         </div>
-        <InstagramEmbed
-            url='https://www.instagram.com/p/B8qn8hJFD5K/'
-            clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'
-            maxWidth={320}
-            hideCaption={true}
-            containerTagName='div'
-            protocol=''
-            injectScript
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-        />
+        <div className="container home_instagram_container">
+            <div className="home_instagram_title">
+                <h3>Follow on instagram</h3>
+                <a href="#">@sikacci_jewelry <BsArrowRight/></a>
+            </div>
+            <div className="home_instagram">
+                <div>
+                    <img src="insta.jpg" alt="instagram"/>
+                </div>
+            </div>
+            <div className='row home_subscribe'>
+                <div className="col-md-6"><img src={homepage.subscribe_image.url} alt=""/></div>
+                <div className="col-md-6">
+                   <p>{homepage.subscribe_text[0].text}</p>
+                    <form action="" method="POST">
+                        <input id="name" type="text" autoComplete="name" placeholder="Enter your email address" required/>
+                        <button type="submit">Submit <BsArrowRight/> </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {/*<InstagramEmbed*/}
+        {/*    url='https://www.instagram.com/p/B8qn8hJFD5K/'*/}
+        {/*    clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'*/}
+        {/*    maxWidth={320}*/}
+        {/*    hideCaption={true}*/}
+        {/*    containerTagName='div'*/}
+        {/*    protocol=''*/}
+        {/*    injectScript*/}
+        {/*    onLoading={() => {}}*/}
+        {/*    onSuccess={() => {}}*/}
+        {/*    onAfterRender={() => {}}*/}
+        {/*    onFailure={() => {}}*/}
+        {/*/>*/}
     </MainContainer>
   )
 }
