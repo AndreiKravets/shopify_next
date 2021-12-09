@@ -1,9 +1,11 @@
 import MainContainer from "../components/MainContainer";
 import {shopifyClient} from "../utils/shopify";
+import React, {useState} from 'react';
+import ProductPopup from "../components/ProductPopup"
 import Prismic from "@prismicio/client";
+import {RichText} from 'prismic-reactjs';
 import Slider from "react-slick";
 import Link from "next/link";
-import React, {Fragment} from "react";
 import Card from "../components/Card";
 import {motion} from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
@@ -21,6 +23,10 @@ export default function Home({collections,homepage,slider,isVisible}) {
     const under_products = collections.filter(collection => collection.handle == 'under-200')
     const home_under_products = under_products[0].products.slice(0,4)
     console.log(homepage)
+
+    const [product, setProduct] = useState('')
+    const [popup, setPopup] = useState(false);
+
         const settings = {
             dots: false,
             arrows: false,
@@ -31,8 +37,19 @@ export default function Home({collections,homepage,slider,isVisible}) {
             slidesToScroll: 1
         }
 console.log(homepage)
+
+    async function getProduct(product) {
+        setProduct(product)
+        setPopup(true)
+    }
+
+
+
   return (
     <MainContainer>
+        {popup == true ? <div className="popup active" onClick={() => {
+            setPopup(false)
+        }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
         <div className="container-fluid home_top_section">
 
                 <Slider {...settings}>
@@ -96,7 +113,9 @@ console.log(homepage)
             <div className="row">
                 {home_all_products.map((product, index) => {
                     return (
-                        <div className="col-md-3" key={index}>
+                        <div className="col-md-3"
+                             onClick={() => getProduct(product)}
+                             key={index}>
                             <Card
                                 images={product.images[0].src}
                                 index={index}
@@ -123,7 +142,9 @@ console.log(homepage)
             <div className="row">
                 {home_under_products.map((product, index) => {
                     return (
-                        <div className="col-md-3" key={index}>
+                        <div className="col-md-3"
+                             onClick={() => getProduct(product)}
+                             key={index}>
                             <Card
                                 images={product.images[0].src}
                                 index={index}

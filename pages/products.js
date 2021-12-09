@@ -173,8 +173,7 @@ const Products = ({products}) => {
 
                                 return (
                                     <div className="col-md-4"
-                                         onClick={() => getProduct(product)
-                                         }
+                                         onClick={() => getProduct(product)}
                                          key={index}>
                                             <motion.div initial="hidden" animate="visible" key={product.id} variants={{
                                                          hidden: {

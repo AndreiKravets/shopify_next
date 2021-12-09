@@ -1,6 +1,19 @@
 import React, {useState} from 'react'
 import {shopifyClient} from "../utils/shopify";
 import cart_store from "../store/cart_store";
+import {motion} from "framer-motion";
+import Slider from "react-slick";
+import Image from "next/image";
+
+const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+}
 
 export default function ProductPopup ({product}) {
      const initOptions = []
@@ -70,18 +83,46 @@ export default function ProductPopup ({product}) {
         cart_store.setCount(cart.lineItems.length)
     };
 
-
+    const myLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
     return(
+        <motion.div initial="hidden" animate="visible" key={product.id} variants={{
+            hidden: {
+                scale: 1,
+                opacity: 0,
+                y:-1200,
+                rotate: 138,
+        },
+            visible: {
+                scale: [2.4,0.4,1],
+                opacity: 1,
+                y:0,
+                rotate: 0,
+                transition:
+             { duration: .2, ease: [0.48, 0.15, 0.25, 0.96] }
+            },
+        }}>
         <div className="popup_inner" onClick={e => e.stopPropagation()}>
             <div className="container">
                 <div className="row">
                     <div className="col-6">
+                        <Slider {...settings}>
                         {product.images.map((iage,index) => {
                             return (
-                                <img src={iage.src} key={index}/>
+                                // <img src={iage.src} key={index}/>
+                            <Image
+                                key={index}
+                                className="card_product_bg"
+                                loader={myLoader}
+                                src={iage.src}
+                                width={500}
+                                height={500}
+                            />
 
                             )
                         })}
+                        </Slider>
                     </div>
                     <div className="col-6">
                         <p className="product_title">{product.title}</p>
@@ -129,5 +170,6 @@ export default function ProductPopup ({product}) {
                 </div>
             </div>
         </div>
+        </motion.div>
     )
 }
