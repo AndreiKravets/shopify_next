@@ -135,15 +135,16 @@ const CollectionPage = ({collections}) => {
         setPagination(createPagination(quantity_products,products))
     }
     return (
+        <>
+            {popup == true ? <div className="popup active" onClick={() => {
+                setPopup(false)
+            }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
                 <p>collection</p>
                 <h1>{collection[0].title}</h1>
             </div>
             <div className="container products">
-                {popup == true ? <div className="popup active" onClick={() => {
-                    setPopup(false)
-                }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
                 <div className="row">
                     <div className="col-md-2">
 
@@ -222,8 +223,8 @@ const CollectionPage = ({collections}) => {
                     </ul>
                 </div> : <div></div>}
             </div>
-
         </MainContainer>
+            </>
     )
 }
 

@@ -128,36 +128,61 @@ const Products = ({products}) => {
         setCurrentProducts(products.slice(0, quantity_products))
         setPagination(createPagination(quantity_products,products))
     }
+
+    const ul_filter = {
+      hidden: {
+      opacity: 0,
+      x: -10
+       },
+      show: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          staggerChildren: 0.05
+        }
+      }
+    }
+
+    const li_filter = {
+      hidden: { opacity: 0 },
+      show: { opacity: 1 }
+    }
     return (
+    <>
+     {popup == true ? <div className="popup active" onClick={() => {
+                                setPopup(false)
+                            }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
                 <p>collection</p>
                 <h1>All Products</h1>
             </div>
             <div className="container products">
-                {popup == true ? <div className="popup active" onClick={() => {
-                    setPopup(false)
-                }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
                 <div className="row">
                     <div className="col-md-2">
 
                         {filter.map((option, index) => {
                             return (
-                                <ul className="products_filter" key={index}><h5>{option.name}</h5>
+                                <motion.ul className="products_filter"
+                                key={index}
+                                 variants={ul_filter}
+                                 initial="hidden"
+                                 animate="show"><h5>{option.name}</h5>
                                     {option.values.map((value, index) => {
                                         return (
 
-                                            <li
+                                            <motion.li
                                                 key={index}
+                                                variants={li_filter}
                                                 onClick={() => set_current_filter(option.name, value)}
                                                 className={currentFilter[0].some(e => (e == value)) == true ? 'active' : ''}
                                             >
                                                 <FaRegSquare className="check_box"/>
                                                 <FaRegCheckSquare className="check_box_active"/>
-                                                {value}</li>
+                                                {value}</motion.li>
                                         )
                                     })}
-                                </ul>
+                               </motion.ul>
                             )
                         })}
                     </div>
@@ -172,10 +197,10 @@ const Products = ({products}) => {
                             {currentProducts.map((product, index) => {
 
                                 return (
-                                    <div className="col-md-4"
-                                         onClick={() => getProduct(product)}
-                                         key={index}>
-                                            <motion.div initial="hidden" whileInView="visible" key={product.id} variants={{
+                                //    <div className="col-md-4"
+                                //         onClick={() => getProduct(product)}
+                                //         key={index}>
+                                            <motion.div className="col-md-4" onClick={() => getProduct(product)} initial="hidden" whileInView="visible" key={product.id} variants={{
                                                          hidden: {
                                                              scale: .8,
                                                              opacity: 0,
@@ -201,7 +226,7 @@ const Products = ({products}) => {
                                             price={product.variants[0].price}
                                         />
                                        </motion.div>
-                                    </div>
+                                //    </div>
                                 )
                             })
                             }
@@ -221,6 +246,7 @@ const Products = ({products}) => {
             </div>
 
         </MainContainer>
+        </>
     )
 }
 
