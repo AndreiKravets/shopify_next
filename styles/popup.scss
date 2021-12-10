@@ -26,6 +26,17 @@
   .popup_inner{
     background-color: $grey5;
     padding: 25px 10px;
+    .slick-arrow{
+      color: $brand-btn;
+      width: 40px;
+      height: 40px;
+    }
+    .slick-prev {
+      left: -30px;
+    }
+    .slick-next {
+      right: -30px;
+    }
    .slick-slide{
       div{
         width: 100%;

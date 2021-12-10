@@ -186,7 +186,7 @@ const Products = ({products}) => {
                                                              transition: {
                                                                  delay: .1
                                                              }
-                                                         },
+                                                         }
                                                      }}>
                                         <Card
                                             images={product.images[0].src}
@@ -206,15 +206,15 @@ const Products = ({products}) => {
                          </motion.div>
                     </div>
                 </div>
-                <div className="row products_pagination">
-                    <ul>
-                        {pagination.map((index) => {
-                            return (
-                                <li key={index} onClick={() => current_Products(index)}>{index}</li>
-                            )
-                        })}
-                    </ul>
-                </div>
+               {pagination.length > 1 ?  <div className="row products_pagination">
+                                 <ul>
+                                     {pagination.map((index) => {
+                                         return (
+                                             <li key={index} onClick={() => current_Products(index)}>{index}</li>
+                                         )
+                                     })}
+                                 </ul>
+                             </div> : <div></div>}
             </div>
 
         </MainContainer>

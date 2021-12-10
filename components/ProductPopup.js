@@ -4,15 +4,18 @@ import cart_store from "../store/cart_store";
 import {motion} from "framer-motion";
 import Slider from "react-slick";
 import Image from "next/image";
+import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
 
 const settings = {
     dots: false,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 500,
     autoplay: true,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    nextArrow: <BsChevronCompactRight />,
+    prevArrow: <BsChevronCompactLeft />
 }
 
 export default function ProductPopup ({product}) {
@@ -110,7 +113,6 @@ export default function ProductPopup ({product}) {
                         <Slider {...settings}>
                         {product.images.map((iage,index) => {
                             return (
-                                // <img src={iage.src} key={index}/>
                             <Image
                                 key={index}
                                 className="card_product_bg"
@@ -119,7 +121,6 @@ export default function ProductPopup ({product}) {
                                 width={500}
                                 height={500}
                             />
-
                             )
                         })}
                         </Slider>
