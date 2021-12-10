@@ -9,9 +9,14 @@ import {motion } from "framer-motion";
 
 export default function MainContainer({children, title,isVisible}){
     const variants = {
-        hidden: { opacity: 0, x: -200, y: 0 },
-        enter: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 1, x: -200, y: -100 },
+        hidden: { scale: 1, x: 500, opacity: 0.8 },
+        enter: { scale: 1, x: 0.8, opacity: 1, transition: { duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96] } },
+        exit: {
+            scale: 1,
+            x: -500,
+            opacity: 0,
+            transition: { duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96] }
+        }
     }
     return (
         <>

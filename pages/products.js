@@ -175,16 +175,19 @@ const Products = ({products}) => {
                                     <div className="col-md-4"
                                          onClick={() => getProduct(product)}
                                          key={index}>
-                                            <motion.div initial="hidden" animate="visible" key={product.id} variants={{
+                                            <motion.div initial="hidden" whileInView="visible" key={product.id} variants={{
                                                          hidden: {
                                                              scale: .8,
-                                                             opacity: 0
+                                                             opacity: 0,
+                                                             y: -100
                                                          },
                                                          visible: {
                                                              scale: 1,
+                                                             y: 0,
                                                              opacity: 1,
                                                              transition: {
-                                                                 delay: .1
+                                                                 delay: 0.05,
+                                                                 duration: .2, ease: [0.48, 0.15, 0.25, 0.96]
                                                              }
                                                          }
                                                      }}>

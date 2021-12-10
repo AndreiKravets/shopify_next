@@ -21,16 +21,19 @@ const Collections = ({products}) => {
                 <div className="row">
                     {products.map((product, index) => {
                         return (
-                            <motion.div className="col-12 collection_col" initial="hidden" animate="visible" key={product.id} variants={{
+                            <motion.div className="col-12 collection_col" initial="hidden" whileInView="visible" key={product.id} variants={{
                                 hidden: {
-                                    scale: .8,
-                                    opacity: 0
+                                    scale: .5,
+                                    opacity: 0,
+                                    y: -100
                                 },
                                 visible: {
                                     scale: 1,
+                                    y: 0,
                                     opacity: 1,
                                     transition: {
-                                        delay: .1
+                                        delay: .2,
+                                        duration: .2, ease: [0.48, 0.15, 0.25, 0.96]
                                     }
                                 }
                             }}>

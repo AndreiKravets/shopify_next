@@ -181,7 +181,7 @@ const CollectionPage = ({collections}) => {
                                         <div className="col-md-4"
                                              onClick={() => getProduct(product)}
                                              key={index}>
-                                            <motion.div initial="hidden" animate="visible" key={product.id} variants={{
+                                            <motion.div initial="hidden" whileInView="visible" key={product.id} variants={{
                                                 hidden: {
                                                     scale: .8,
                                                     opacity: 0
