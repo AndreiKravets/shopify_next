@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function MainContainer({children, title,isVisible}){
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 1);
     },[])
     const variants = {
         hidden: { scale: 1, x: 500, opacity: 0.8 },
