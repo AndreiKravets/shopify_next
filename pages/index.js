@@ -98,8 +98,8 @@ console.log(homepage)
             </div>
             <div className='row home_collections_legendary'>
                 <div className="col-md-2"></div>
-                <div className="col-md-5">{homepage.legendary_text[0].text}</div>
-                <div className="col-md-5"><img src={homepage.legendary_image.url} alt=""/></div>
+                <div className="col-md-5 home_legendary_text">{homepage.legendary_text[0].text}</div>
+                <div className="col-md-5 home_legendary_image"><img src={homepage.legendary_image.url} alt=""/></div>
             </div>
         </div>
         <div className="container home_product_container">
