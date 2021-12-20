@@ -3,11 +3,14 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import {motion } from "framer-motion";
-
+import { useEffect } from "react";
 
 
 
 export default function MainContainer({children, title,isVisible}){
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
     const variants = {
         hidden: { scale: 1, x: 500, opacity: 0.8 },
         enter: { scale: 1, x: 0.8, opacity: 1, transition: { duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96] } },
