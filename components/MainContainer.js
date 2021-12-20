@@ -11,16 +11,18 @@ export default function MainContainer({children, title,isVisible}){
     useEffect(() => {
         window.scrollTo(0, 1);
     },[])
-    const variants = {
-        hidden: { scale: 1, x: 0, opacity: 0.5 },
-        enter: { scale: 1, x: 0, opacity: 1, transition: { duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96] } },
-        exit: {
-            scale: 1,
-            x: -500,
-            opacity: 0,
-            transition: { duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96] }
+
+       const variants = {
+            hidden: {scale: 1, x: 0, opacity: 0.5},
+            enter: {scale: 1, x: 0, opacity: 1, transition: {duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96]}},
+            exit: {
+                scale: 1,
+                x: -500,
+                opacity: 0,
+                transition: {duration: 0.15, ease: [0.48, 0.15, 0.25, 0.96]}
+            }
         }
-    }
+
     return (
         <>
             <Head>

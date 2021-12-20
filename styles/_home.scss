@@ -62,10 +62,23 @@
     .home_collections_section_inner{
       background-size: cover;
       background-position: center;
-      height: 300px;
+      height: 400px;
       display: flex;
       align-items: flex-end;
       position: relative;
+      @include _media-big-down() {
+        height: 330px;
+      }
+      @include _media-lg-down() {
+        height: 280px;
+      }
+      @include _media-md-down() {
+        height: 200px;
+      }
+      @include _media-small-down() {
+        height: 300px;
+        margin-bottom: 15px;
+      }
      .d-flex{
        width: 100%;
        align-items: center;
@@ -120,7 +133,19 @@
 .home_product_container {
   .card_product_col{
     .card_product {
-      height: 260px;
+      height: 290px;
+      @include _media-big-down() {
+        height: 260px;
+      }
+      @include _media-lg-down() {
+        height: 220px;
+      }
+      @include _media-md-down() {
+        height: 250px;
+      }
+      @include _media-small-down() {
+        height: 300px;
+      }
     }
   }
   .home_product_title {
@@ -155,6 +180,11 @@
       font-size: 15px;
       font-weight: 500;
       letter-spacing: 1px;
+      transition:all .3s ease-in-out;
+      &:hover{
+        background-color: $brand-hover;
+        transition:all .3s ease-in-out;
+      }
     }
   }
 }

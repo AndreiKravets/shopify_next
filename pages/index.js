@@ -113,7 +113,7 @@ console.log(homepage)
             <div className="row">
                 {home_all_products.map((product, index) => {
                     return (
-                        <div className="col-md-3"
+                        <div className="col-lg-3 col-md-6"
                              onClick={() => getProduct(product)}
                              key={index}>
                             <Card
@@ -142,7 +142,7 @@ console.log(homepage)
             <div className="row">
                 {home_under_products.map((product, index) => {
                     return (
-                        <div className="col-md-3"
+                        <div className="col-lg-3 col-md-6"
                              onClick={() => getProduct(product)}
                              key={index}>
                             <Card
