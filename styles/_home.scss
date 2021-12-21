@@ -21,9 +21,15 @@
   .slick-slide{
     display: flex;
     align-items: center;
-    .row{
+    @include _media-small-down() {
+      padding-top: 100px;
+    }
+      .row{
       min-height: 600px;
-      .col-md-4{
+        @include _media-small-down() {
+        min-height: auto;
+        }
+          .col-md-4{
         text-align: left;
        margin: auto;
       }
@@ -39,6 +45,14 @@
           height: 80%;
           object-fit: cover;
         }
+        @include _media-small-down() {
+          margin-bottom: 20px;
+          margin-top: 30px;
+          height: 400px;
+          img{
+            display: none;
+          }
+        }
       }
 
     }
@@ -49,7 +63,10 @@
   position: relative;
   padding-top: 50px;
   margin-bottom: 100px;
-  .home_bg_legendary{
+  @include _media-small-down() {
+    margin-bottom: 50px;
+  }
+    .home_bg_legendary{
     position: absolute;
     width: 80%;
     height: 100%;
@@ -181,7 +198,6 @@
     padding: 0 50px;
     margin-top: 70px;
     margin-bottom: 20px;
-
     h2 {
       text-transform: uppercase;
     }
@@ -212,6 +228,18 @@
         transition:all .3s ease-in-out;
       }
     }
+    @include _media-small-down() {
+      flex-wrap: wrap;
+      padding: 0;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      div{
+        margin-right: 15px;
+      }
+      a{
+        margin-top: 15px;
+      }
+    }
   }
 }
 .home_instagram_container{
@@ -219,7 +247,14 @@
   padding: 60px;
   margin-top: 70px;
   margin-bottom: 100px;
-  .home_instagram_title{
+  @include _media-small-down() {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+    .home_instagram_title{
     text-align: center;
     margin-bottom: 35px;
     h3{
@@ -312,5 +347,30 @@
         }
       }
     }
-  }
+    @include _media-small-down() {
+    text-align: center;
+      img{
+        max-width: 400px;
+        margin-top: 0;
+      }
+      p{
+        margin: auto;
+      }
+      form{
+        margin: auto;
+        margin-top: 20px;
+      }
+    }
+    @include _media-xs-down() {
+      form{
+        padding-bottom: 30px;
+        button{
+          top: 50px;
+        }
+        input{
+          padding-right: 0;
+        }
+      }
+    }
+    }
 }

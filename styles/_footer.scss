@@ -2,7 +2,12 @@ footer{
   padding-top: 40px;
   padding-bottom: 50px;
   margin-top: 20px;
-  h6{
+  @include _media-small-down() {
+  text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+  }
+    h6{
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 1px;
@@ -36,9 +41,28 @@ footer{
         }
       }
     }
-  }
+    @include _media-small-down() {
+      margin-bottom: 30px;
+      img{
+        margin-left: 0px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+      p{
+        max-width: 100%;
+      margin: auto;
+      }
+      .footer_social {
+        margin: auto;
+        margin-top: 10px;
+      }
+    }
+    }
   .footer_newsletter{
-    p{
+    @include _media-small-down() {
+      margin-top: 25px;
+    }
+      p{
       max-width: 340px;
       margin-top: 20px;
     }
@@ -47,7 +71,12 @@ footer{
       justify-content: right;
       flex-wrap: wrap;
       margin-top: 30px;
-      input{
+      @include _media-small-down() {
+      max-width: 400px;
+        margin: auto;
+        margin-top: 20px;
+      }
+        input{
         width: 100%;
         border: none;
         border-bottom: 2px solid #8D8D8D;

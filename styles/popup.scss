@@ -60,6 +60,13 @@
         }
       }
     }
-  }
+    @include _media-xs-down() {
+    .col-6{
+      width: 100%;
+      max-width: 100%;
+      flex: 100%;
+    }
+    }
+    }
 
 }
