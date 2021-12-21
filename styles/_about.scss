@@ -1,14 +1,17 @@
-.about_top_section{
-background-color: #EFEFEF;
-  .container{
-    .row{
+.about_top_section {
+  background-color: #EFEFEF;
+
+  .container {
+    .row {
       display: flex;
       align-items: center;
-      img{
+
+      img {
         width: 100%;
         height: auto;
       }
-      h1{
+
+      h1 {
         margin-bottom: 20px;
       }
     }

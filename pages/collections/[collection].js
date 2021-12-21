@@ -20,12 +20,13 @@ const CollectionPage = ({collections}) => {
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
-    const [pagination, setPagination] = useState(createPagination(quantity_products,filteredProducts));
+    const [pagination, setPagination] = useState(createPagination(quantity_products, filteredProducts));
     const [filter, setFilter] = useState(createFilter());
     const [currentFilter, setCurrentFilter] = useState([[]]);
     const [currentProducts, setCurrentProducts] = useState(set_current_products());
 
     console.log(collection)
+
     function set_current_products() {
         return (
             filteredProducts.slice(0, quantity_products)
@@ -43,7 +44,7 @@ const CollectionPage = ({collections}) => {
 
     function createPagination(page, products) {
         let pageArr = [];
-        for (var i = 1; i < products.length / page + 1; i++) {
+        for (let i = 1; i < products.length / page + 1; i++) {
             pageArr.push(i);
         }
         return pageArr
@@ -76,23 +77,22 @@ const CollectionPage = ({collections}) => {
         let current_filter = [...currentFilter]
 
 
-
         let option = current_filter.find(e => e.name == name)
         if (option) {
-            if(option.values.includes(value)){
+            if (option.values.includes(value)) {
                 option.values = option.values.filter(item => item !== value)
                 current_filter[0].splice(current_filter[0].indexOf(value), 1);
 
-                if(option.values.length < 1){
+                if (option.values.length < 1) {
                     const index = current_filter.map(e => e.name).indexOf(name);
                     current_filter.splice(index, 1);
                 }
-            } else{
+            } else {
                 option.values.push(value)
                 current_filter[0].push(value)
             }
-        } else{
-            current_filter.push({name:name, values:[value]})
+        } else {
+            current_filter.push({name: name, values: [value]})
             current_filter[0].push(value)
         }
         setCurrentFilter(current_filter)
@@ -124,7 +124,7 @@ const CollectionPage = ({collections}) => {
         setFilteredProducts(newFilteredProducts)
         current_Products(1)
         setCurrentProducts(newFilteredProducts.slice(0, quantity_products))
-        setPagination(createPagination(quantity_products,newFilteredProducts))
+        setPagination(createPagination(quantity_products, newFilteredProducts))
     }
 
     function clearFilter() {
@@ -132,99 +132,102 @@ const CollectionPage = ({collections}) => {
         setFilteredProducts(products)
         current_Products(1)
         setCurrentProducts(products.slice(0, quantity_products))
-        setPagination(createPagination(quantity_products,products))
+        setPagination(createPagination(quantity_products, products))
     }
+
     return (
         <>
             {popup == true ? <div className="popup active" onClick={() => {
                 setPopup(false)
             }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
-        <MainContainer title={'product'}>
-            <div className="container-fluid products_top_section">
-                <p>collection</p>
-                <h1>{collection[0].title}</h1>
-            </div>
-            <div className="container products">
-                <div className="row">
-                    <div className="col-md-2">
-
-                        {filter.map((option, index) => {
-                            return (
-                                <ul className="products_filter" key={index}><h5>{option.name}</h5>
-                                    {option.values.map((value, index) => {
-                                        return (
-
-                                            <li
-                                                key={index}
-                                                onClick={() => set_current_filter(option.name, value)}
-                                                className={currentFilter[0].some(e => (e == value)) == true ? 'active' : ''}
-                                            >
-                                                <FaRegSquare className="check_box"/>
-                                                <FaRegCheckSquare className="check_box_active"/>
-                                                {value}</li>
-                                        )
-                                    })}
-                                </ul>
-                            )
-                        })}
-                    </div>
-                    <div className="col-md-10">
-                        <div className="row">
-                            <div className="col-12 btn_clear_filter">
-                                <button onClick={clearFilter}>Clear Filter</button>
-                            </div>
-                        </div>
-                        <motion.div initial="initial" animate="enter" exit="exit" variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
-                            <div className="row">
-                                {currentProducts.map((product, index) => {
-
-                                    return (
-                                        <div className="col-md-4"
-                                             onClick={() => getProduct(product)}
-                                             key={index}>
-                                            <motion.div initial="hidden" whileInView="visible" key={product.id} variants={{
-                                                hidden: {
-                                                    scale: .8,
-                                                    opacity: 0
-                                                },
-                                                visible: {
-                                                    scale: 1,
-                                                    opacity: 1,
-                                                    transition: {
-                                                        delay: .1
-                                                    }
-                                                }
-                                            }}>
-                                                <Card
-                                                    images={product.images[0].src}
-                                                    index={index}
-                                                    id={product.id}
-                                                    handle={product.handle}
-                                                    title={product.title}
-                                                    description={product.description}
-                                                    price={product.variants[0].price}
-                                                />
-                                            </motion.div>
-                                        </div>
-                                    )
-                                })
-                                }
-                            </div>
-                        </motion.div>
-                    </div>
+            <MainContainer title={'product'}>
+                <div className="container-fluid products_top_section">
+                    <p>collection</p>
+                    <h1>{collection[0].title}</h1>
                 </div>
-                {pagination.length > 1 ?  <div className="row products_pagination">
-                    <ul>
-                        {pagination.map((index) => {
-                            return (
-                                <li key={index} onClick={() => current_Products(index)}>{index}</li>
-                            )
-                        })}
-                    </ul>
-                </div> : <div></div>}
-            </div>
-        </MainContainer>
-            </>
+                <div className="container products">
+                    <div className="row">
+                        <div className="col-md-2">
+
+                            {filter.map((option, index) => {
+                                return (
+                                    <ul className="products_filter" key={index}><h5>{option.name}</h5>
+                                        {option.values.map((value, index) => {
+                                            return (
+
+                                                <li
+                                                    key={index}
+                                                    onClick={() => set_current_filter(option.name, value)}
+                                                    className={currentFilter[0].some(e => (e == value)) == true ? 'active' : ''}
+                                                >
+                                                    <FaRegSquare className="check_box"/>
+                                                    <FaRegCheckSquare className="check_box_active"/>
+                                                    {value}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                )
+                            })}
+                        </div>
+                        <div className="col-md-10">
+                            <div className="row">
+                                <div className="col-12 btn_clear_filter">
+                                    <button onClick={clearFilter}>Clear Filter</button>
+                                </div>
+                            </div>
+                            <motion.div initial="initial" animate="enter" exit="exit"
+                                        variants={{exit: {transition: {staggerChildren: 0.1}}}}>
+                                <div className="row">
+                                    {currentProducts.map((product, index) => {
+
+                                        return (
+                                            <div className="col-md-4"
+                                                 onClick={() => getProduct(product)}
+                                                 key={index}>
+                                                <motion.div initial="hidden" whileInView="visible" key={product.id}
+                                                            variants={{
+                                                                hidden: {
+                                                                    scale: .8,
+                                                                    opacity: 0
+                                                                },
+                                                                visible: {
+                                                                    scale: 1,
+                                                                    opacity: 1,
+                                                                    transition: {
+                                                                        delay: .1
+                                                                    }
+                                                                }
+                                                            }}>
+                                                    <Card
+                                                        images={product.images[0].src}
+                                                        index={index}
+                                                        id={product.id}
+                                                        handle={product.handle}
+                                                        title={product.title}
+                                                        description={product.description}
+                                                        price={product.variants[0].price}
+                                                    />
+                                                </motion.div>
+                                            </div>
+                                        )
+                                    })
+                                    }
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                    {pagination.length > 1 ? <div className="row products_pagination">
+                        <ul>
+                            {pagination.map((index) => {
+                                return (
+                                    <li key={index} onClick={() => current_Products(index)}>{index}</li>
+                                )
+                            })}
+                        </ul>
+                    </div> : <div></div>}
+                </div>
+            </MainContainer>
+        </>
     )
 }
 
