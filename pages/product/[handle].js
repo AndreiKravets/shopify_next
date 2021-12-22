@@ -8,8 +8,6 @@ import Prismic from "@prismicio/client";
 import Image from "next/image";
 
 const Product = observer( ({product, data})=> {
-    console.log(product)
-    console.log(data)
     let productData = false
     if (data.results.length > 0){
          productData = data.results[0].data

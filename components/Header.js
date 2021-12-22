@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from "next/link"
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP, FaShoppingCart,FaRegHeart } from 'react-icons/fa'
 import { RiShoppingCartLine } from "react-icons/ri";
@@ -8,6 +8,19 @@ import {observer} from "mobx-react-lite";
 
 
 const Header = observer( ()=> {
+    const [loaded, setLoaded] = useState(true)
+    useEffect(() => {
+
+        function cartInit() {
+            cart_store.setCount((window.localStorage, JSON.parse(window.localStorage.getItem("cart")).lineItems.length))
+        }
+
+        if (loaded){
+            cartInit()
+            setLoaded(false)
+        }
+    }, []);
+
     const [activeMenu, setActiveMenu] = useState(false)
     const [activeStickyMenu, setActiveStickyMenu] = useState(false)
 
