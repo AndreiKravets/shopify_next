@@ -102,6 +102,15 @@
         &.active{
           background-color: #EFEFEF;
         }
+        &.quantity_li{
+          padding: 0;
+          input{
+            border: none;
+            width: 50px;
+            height: 100%;
+            text-align: center;
+          }
+        }
       }
     }
     .single_product_btn{
@@ -201,6 +210,15 @@
       cursor: pointer;
       &.active{
         background-color: #EFEFEF;
+      }
+      &.quantity_li{
+        padding: 0;
+        input{
+          border: none;
+          width: 50px;
+          height: 100%;
+          text-align: center;
+        }
       }
     }
   }

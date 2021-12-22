@@ -5,7 +5,6 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import Menu from "./menu";
 import cart_store from "../store/cart_store";
 import {observer} from "mobx-react-lite";
-import products_store from "../store/products_store";
 
 
 const Header = observer( ()=> {

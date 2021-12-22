@@ -111,13 +111,13 @@ export default function ProductPopup ({product}) {
                 <div className="row">
                     <div className="col-6">
                         <Slider {...settings}>
-                        {product.images.map((iage,index) => {
+                        {product.images.map((image,index) => {
                             return (
                             <Image
                                 key={index}
                                 className="card_product_bg"
                                 loader={myLoader}
-                                src={iage.src}
+                                src={image.src}
                                 width={500}
                                 height={500}
                             />
@@ -165,7 +165,29 @@ export default function ProductPopup ({product}) {
                                 )
                             })}
                         </div>
+                        <div className="popup_product_options">
+                            <div><span>Quantity</span></div>
+                            <ul>
+                                <li className= 'btn'
+                                    onClick = {(e) => {
+                                        quantity <= 1 ?  setQuantity( quantity) : setQuantity(quantity-1)
+                                    }}>-</li>
+                                <li className="quantity_li"> <input
+                                    onChange={(e) =>
+                                        e.target.value <= 1 ?  setQuantity(1) : setQuantity(e.target.value)
+                                    }
+                                    type="number"
+                                    actionPosition='left'
+                                    defaultValue='1'
+                                    value={quantity}
+                                /></li>
+                                <li className= 'btn'
+                                    onClick = {(e) => {
+                                        setQuantity(quantity+1)
+                                    }}>+</li>
+                            </ul>
 
+                        </div>
                         <button className="popup_add_to_cart" onClick={addToCart}>Add to cart</button>
                     </div>
                 </div>

@@ -89,13 +89,12 @@ const Product = observer( ({product, data})=> {
             <div className="container single_product_container">
                 <div className="row">
                     <div className="col-6 single_product_image">
-                        {product.images.map((iage,index) => {
+                        {product.images.map((image,index) => {
                             return (
-                                // <img src={iage.src} key={index}/>
                             <Image
                                 loader={myLoader}
-                                src={iage.src} key={index}
-                                alt={iage.src}
+                                src={image.src} key={index}
+                                alt={image.src}
                                 width={500}
                                 height={500}
                             />
@@ -144,14 +143,27 @@ const Product = observer( ({product, data})=> {
                             })}
                         </div>
                         <div className="single_product_quantity">
-                            <input
-                                onChange={(e) =>
-                                        setQuantity(Number(e.target.value))
-                                  }
-                                type="number"
-                                actionPosition='left'
-                                defaultValue='1'
-                            />
+                            <div><span>Quantity</span></div>
+                            <ul>
+                                <li className= 'btn'
+                                    onClick = {(e) => {
+                                        quantity <= 1 ?  setQuantity( quantity) : setQuantity(quantity-1)
+                                    }}>-</li>
+                                <li className="quantity_li"> <input
+                                    onChange={(e) =>
+                                        e.target.value <= 1 ?  setQuantity(1) : setQuantity(e.target.value)
+                                    }
+                                    type="number"
+                                    actionPosition='left'
+                                    defaultValue='1'
+                                    value={quantity}
+                                /></li>
+                                <li className= 'btn'
+                                    onClick = {(e) => {
+                                        setQuantity(quantity+1)
+                                    }}>+</li>
+                            </ul>
+
                         </div>
                         <div className="single_product_btn">
                             <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
@@ -185,4 +197,3 @@ export async function getServerSideProps({ query }) {
                data: data
        }};
 }
-
