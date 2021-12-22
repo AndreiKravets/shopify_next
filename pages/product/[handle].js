@@ -10,7 +10,7 @@ import Image from "next/image";
 const Product = observer( ({product, data})=> {
     console.log(product)
     console.log(data)
-    var productData = false
+    let productData = false
     if (data.results.length > 0){
          productData = data.results[0].data
     }
@@ -27,7 +27,7 @@ const Product = observer( ({product, data})=> {
     const [variants, setVariants] = useState(() => product.variants[0])
     const [quantity, setQuantity] = useState(1)
 
-
+    console.log(quantity)
 
     function onVar (e, name, value, variants) {
         var x = document.getElementById(name).querySelectorAll(".active");
@@ -145,10 +145,9 @@ const Product = observer( ({product, data})=> {
                         </div>
                         <div className="single_product_quantity">
                             <input
-                                // onChange={(e, {value}) =>
-                                //
-                                //         setQuantity(Number(value))
-                                //   }
+                                onChange={(e) =>
+                                        setQuantity(Number(e.target.value))
+                                  }
                                 type="number"
                                 actionPosition='left'
                                 defaultValue='1'
