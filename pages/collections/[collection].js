@@ -5,8 +5,6 @@ import Link from "next/link"
 import {shopifyClient} from "../../utils/shopify"
 import Card from "../../components/Card"
 import ProductPopup from "../../components/ProductPopup"
-import {toJS} from 'mobx';
-import products_store from "../../store/products_store";
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
 import {motion} from "framer-motion";
 

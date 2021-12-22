@@ -38,21 +38,21 @@
     }
     a{
       font-weight: 500;
-      font-size: 25px;
+      font-size: 16px;
       color: $white;
       display: flex;
-      align-items: center;
+      font-weight: 400;
+      align-items: flex-end;
       justify-content: center;
       cursor: pointer;
       @include _media-big-down() {
-        font-size: 24px;
+        font-size: 16px;
       }
       @include _media-lg-down() {
-        font-size: 18px;
+        font-size: 16px;
       }
       &:hover{
-        color: $white;
-        background-color: $brand-hover;
+        color: $brand-btn;
       }
     }
   }
