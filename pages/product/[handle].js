@@ -144,16 +144,15 @@ const Product = observer( ({product, data})=> {
                             })}
                         </div>
                         <div className="single_product_quantity">
-                            {/*<input*/}
-                            {/*    onChange={(e, {value}) =>*/}
-
-                            {/*            setQuantity(Number(value))*/}
-                            {/*      }*/}
-                            {/*    type="number"*/}
-                            {/*    actionPosition='left'*/}
-                            {/*    placeholder='Search...'*/}
-                            {/*    defaultValue='1'*/}
-                            {/*/>*/}
+                            <input
+                                // onChange={(e, {value}) =>
+                                //
+                                //         setQuantity(Number(value))
+                                //   }
+                                type="number"
+                                actionPosition='left'
+                                defaultValue='1'
+                            />
                         </div>
                         <div className="single_product_btn">
                             <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
