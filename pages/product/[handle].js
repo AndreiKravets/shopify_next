@@ -24,10 +24,10 @@ const Product = observer( ({product, data})=> {
     })
     const [options, setOptions] = useState(() => initOptions)
     const [price, setPrice] = useState(() => product.variants[0].price)
+    const [temp_price, setTempPrice] = useState(() => price)
     const [variants, setVariants] = useState(() => product.variants[0])
     const [quantity, setQuantity] = useState(1)
 
-    console.log(quantity)
 
     function onVar (e, name, value, variants) {
         var x = document.getElementById(name).querySelectorAll(".active");
@@ -49,8 +49,8 @@ const Product = observer( ({product, data})=> {
                 {
                     count += 1
                     if (count == options.length) {
-                        console.log(variants[key])
                         setPrice(variants[key].price)
+                        setTempPrice((quantity)*variants[key].price)
                         setVariants(variants[key])
                         return false
                     }
@@ -98,13 +98,12 @@ const Product = observer( ({product, data})=> {
                                 width={500}
                                 height={500}
                             />
-
                             )
                         })}
                     </div>
                     <div className="col-6 single_product_content">
                         <h4 className="product_title">{product.title}</h4>
-                        <h5 className="product_price">$ {price}</h5>
+                        <h5 className="product_price">$ {temp_price}</h5>
                         <div>
                             {product.options.map((option, index) => {
                                 return (
@@ -147,11 +146,14 @@ const Product = observer( ({product, data})=> {
                             <ul>
                                 <li className= 'btn'
                                     onClick = {(e) => {
-                                        quantity <= 1 ?  setQuantity( quantity) : setQuantity(quantity-1)
+                                        quantity <= 1 ?  setQuantity(quantity) : setQuantity(quantity-1)
+                                        quantity <= 1 ? setTempPrice(quantity*price) : setTempPrice((quantity-1)*price)
                                     }}>-</li>
                                 <li className="quantity_li"> <input
-                                    onChange={(e) =>
-                                        e.target.value <= 1 ?  setQuantity(1) : setQuantity(e.target.value)
+                                    onChange={(e) => {
+                                        e.target.value <= 1 ? setQuantity(1) : setQuantity(Number(e.target.value))
+                                        e.target.value <= 1 ? setTempPrice(price) : setTempPrice(e.target.value * price)
+                                      }
                                     }
                                     type="number"
                                     actionPosition='left'
@@ -161,6 +163,7 @@ const Product = observer( ({product, data})=> {
                                 <li className= 'btn'
                                     onClick = {(e) => {
                                         setQuantity(quantity+1)
+                                        setTempPrice((quantity+1)*price)
                                     }}>+</li>
                             </ul>
 

@@ -28,6 +28,7 @@ export default function ProductPopup ({product}) {
     })
     const [options, setOptions] = useState(() => initOptions)
     const [price, setPrice] = useState(() => product.variants[0].price)
+    const [temp_price, setTempPrice] = useState(() => price)
     const [variants, setVariants] = useState(() => product.variants[0])
     const [quantity, setQuantity] = useState(1)
 
@@ -55,6 +56,7 @@ export default function ProductPopup ({product}) {
                     if (count == options.length) {
                         console.log(variants[key])
                         setPrice(variants[key].price)
+                        setTempPrice((quantity)*variants[key].price)
                         setVariants(variants[key])
                         return false
                     }
@@ -127,7 +129,7 @@ export default function ProductPopup ({product}) {
                     </div>
                     <div className="col-6">
                         <p className="product_title">{product.title}</p>
-                        <h4 className="product_price">{price}</h4>
+                        <h4 className="product_price">{temp_price}</h4>
                         <div>
                             {product.options.map((option, index) => {
                                 return (
@@ -171,10 +173,13 @@ export default function ProductPopup ({product}) {
                                 <li className= 'btn'
                                     onClick = {(e) => {
                                         quantity <= 1 ?  setQuantity( quantity) : setQuantity(quantity-1)
+                                        quantity <= 1 ? setTempPrice(quantity*price) : setTempPrice((quantity-1)*price)
                                     }}>-</li>
                                 <li className="quantity_li"> <input
-                                    onChange={(e) =>
-                                        e.target.value <= 1 ?  setQuantity(1) : setQuantity(e.target.value)
+                                    onChange={(e) => {
+                                        e.target.value <= 1 ? setQuantity(1) : setQuantity(Number(e.target.value))
+                                        e.target.value <= 1 ? setTempPrice(price) : setTempPrice(e.target.value * price)
+                                     }
                                     }
                                     type="number"
                                     actionPosition='left'
@@ -184,6 +189,7 @@ export default function ProductPopup ({product}) {
                                 <li className= 'btn'
                                     onClick = {(e) => {
                                         setQuantity(quantity+1)
+                                        setTempPrice((quantity+1)*price)
                                     }}>+</li>
                             </ul>
 
