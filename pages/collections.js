@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import MainContainer from "../components/MainContainer";
 import Link from "next/link"
 import {shopifyClient} from "../utils/shopify"
-import {BiRightArrowAlt} from "react-icons/bi";
 import Image from 'next/image'
 import {motion} from "framer-motion";
 

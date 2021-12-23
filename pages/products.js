@@ -197,9 +197,6 @@ const Products = ({products}) => {
                             {currentProducts.map((product, index) => {
 
                                 return (
-                                //    <div className="col-md-4"
-                                //         onClick={() => getProduct(product)}
-                                //         key={index}>
                                             <motion.div className="col-md-4" onClick={() => getProduct(product)} initial="hidden" whileInView="visible" key={product.id} variants={{
                                                          hidden: {
                                                              scale: .8,
@@ -226,7 +223,6 @@ const Products = ({products}) => {
                                             price={product.variants[0].price}
                                         />
                                        </motion.div>
-                                //    </div>
                                 )
                             })
                             }
