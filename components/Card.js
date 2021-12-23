@@ -55,10 +55,13 @@ export default function Card ({index, id, handle, title,images,price}) {
                         objectPosition='center'
                     />
                     <div className="card_product_inner">
-                        <FaRegHeart onClick={e => {
+                        {favorit_product == true ? <FaRegHeart className="favorit_icon_none"/> : <FaRegHeart onClick={e => {
                             e.stopPropagation()
                             set_favorit_product(id)
-                        }}/>
+                        }} />}
+
+
+
                         <FaRegEye/>
                     </div>
                     {favorit_product == true ? <FaRegHeart onClick={e => {
