@@ -12,7 +12,9 @@ const Header = observer( ()=> {
     useEffect(() => {
 
         function cartInit() {
-            cart_store.setCount((window.localStorage, JSON.parse(window.localStorage.getItem("cart")).lineItems.length))
+            if ((window.localStorage.getItem("cart"))){
+                cart_store.setCount((window.localStorage, JSON.parse(window.localStorage.getItem("cart")).lineItems.length))
+            }
         }
 
         if (loaded){

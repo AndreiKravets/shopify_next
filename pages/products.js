@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MainContainer from "../components/MainContainer";
 import Link from "next/link"
 import {shopifyClient} from "../utils/shopify"
@@ -19,7 +19,44 @@ const Products = ({products}) => {
     const [filter, setFilter] = useState(createFilter());
     const [currentFilter, setCurrentFilter] = useState([[]]);
     const [currentProducts, setCurrentProducts] = useState(set_current_products());
+    const [favorit_product, setFavoritPproduct] = useState([])
+    const [loaded, setLoaded] = useState(true)
 
+ useEffect(() => {
+
+        function favoritProductInit() {
+        if(localStorage.getItem("favorit_product")){
+          setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
+        }
+        else{
+        localStorage.setItem('favorit_product', " ");
+        }
+
+            }
+        if (loaded){
+            setLoaded(false)
+            favoritProductInit()
+            }
+    }, []);
+
+    function setFavoritProduct(id){
+        const storage = window.localStorage;
+            let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
+            if(tempFavoritProduct[0] == " "){ tempFavoritProduct = []}
+
+            if (tempFavoritProduct.includes(id)){
+               tempFavoritProduct = tempFavoritProduct.filter((item) => item !== id)
+               storage.setItem('favorit_product', tempFavoritProduct)
+               setFavoritPproduct(tempFavoritProduct)
+            }
+            else {
+              tempFavoritProduct.push(id)
+              console.log(tempFavoritProduct)
+              tempFavoritProduct.join(',')
+              storage.setItem('favorit_product', tempFavoritProduct)
+              setFavoritPproduct(tempFavoritProduct)
+             }
+    }
     function set_current_products() {
         return (
             filteredProducts.slice(0, quantity_products)
@@ -221,6 +258,8 @@ const Products = ({products}) => {
                                             title={product.title}
                                             description={product.description}
                                             price={product.variants[0].price}
+                                            setFavoritProduct={setFavoritProduct}
+                                            favorit_product={favorit_product}
                                         />
                                        </motion.div>
                                 )
