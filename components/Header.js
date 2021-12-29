@@ -58,7 +58,7 @@ const Header = observer( ()=> {
                         </div>
                     </div>
                     <div className="col-auto header_btn">
-                        <FaRegHeart/>
+                        <Link href="/favorit"><a><FaRegHeart/></a></Link>
                         <Link href="/cart"><a><RiShoppingCartLine/>{cart_store.count}</a></Link>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ const Header = observer( ()=> {
                         </div>
                     </div>
                     <div className="col-auto header_btn">
-                        <FaRegHeart/>
+                        <Link href="/favorit"><a><FaRegHeart/></a></Link>
                         <Link href="/cart"><a><RiShoppingCartLine/>{cart_store.count}</a></Link>
 
                     </div>

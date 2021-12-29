@@ -26,7 +26,7 @@ export default function Card ({index, id, handle, title, images, price, setFavor
                         objectPosition='center'
                     />
                     <div className="card_product_inner">
-                        {favorit_product == id ? <FaRegHeart className="favorit_icon_none"/> : <FaRegHeart onClick={e => {
+                        {favorit_product.includes(id) ? <FaRegHeart className="favorit_icon_none"/> : <FaRegHeart onClick={e => {
                             e.stopPropagation()
                             setFavoritProduct(id)
                         }} />}

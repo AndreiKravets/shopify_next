@@ -71,6 +71,12 @@
             z-index: 1;
             transition: all .3s ease-in-out;
         }
+      @include _media-small-down() {
+      opacity: 1;
+        &:before{
+          display: none;
+        }
+      }
         svg{
             margin-left: auto;
             padding: 5px;
@@ -82,7 +88,10 @@
                 transition:all .3s ease-in-out;
             }
         }
-
+    .favorit_icon_none{
+      opacity: 0;
+      z-index: -1;
+    }
     }
     &:hover{
         .card_product_inner{
