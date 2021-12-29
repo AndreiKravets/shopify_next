@@ -1,6 +1,6 @@
+import React, {useState, useEffect} from 'react';
 import MainContainer from "../components/MainContainer";
 import {shopifyClient} from "../utils/shopify";
-import React, {useState} from 'react';
 import ProductPopup from "../components/ProductPopup"
 import Prismic from "@prismicio/client";
 import {RichText} from 'prismic-reactjs';
@@ -22,10 +22,49 @@ export default function Home({collections,homepage,slider,isVisible}) {
     const home_all_products = all_products[0].products.slice(0,8)
     const under_products = collections.filter(collection => collection.handle == 'under-200')
     const home_under_products = under_products[0].products.slice(0,4)
-    console.log(homepage)
-
     const [product, setProduct] = useState('')
-    const [popup, setPopup] = useState(false);
+    const [popup, setPopup] = useState(false)
+    const [favorit_product, setFavoritPproduct] = useState(' ')
+    const [loaded, setLoaded] = useState(true)
+
+    useEffect(() => {
+
+        function favoritProductInit() {
+            if(localStorage.getItem("favorit_product")){
+                setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
+            }
+            else{
+                localStorage.setItem('favorit_product', " ");
+            }
+
+        }
+        if (loaded){
+            setLoaded(false)
+            favoritProductInit()
+        }
+    }, []);
+
+    function setFavoritProduct(id){
+        const storage = window.localStorage;
+        let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
+        if(tempFavoritProduct[0] == " "){ tempFavoritProduct = []}
+
+        if (tempFavoritProduct.includes(id)){
+            tempFavoritProduct = tempFavoritProduct.filter((item) => item !== id)
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+        else {
+            tempFavoritProduct.push(id)
+            console.log(tempFavoritProduct)
+            tempFavoritProduct.join(',')
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+    }
+
+
+
 
         const settings = {
             dots: false,
@@ -124,6 +163,8 @@ console.log(homepage)
                                 title={product.title}
                                 description={product.description}
                                 price={product.variants[0].price}
+                                setFavoritProduct={setFavoritProduct}
+                                favorit_product={favorit_product}
                             />
                         </div>
                     )
@@ -153,6 +194,8 @@ console.log(homepage)
                                 title={product.title}
                                 description={product.description}
                                 price={product.variants[0].price}
+                                setFavoritProduct={setFavoritProduct}
+                                favorit_product={favorit_product}
                             />
                         </div>
                     )

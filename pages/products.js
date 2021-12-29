@@ -19,17 +19,17 @@ const Products = ({products}) => {
     const [filter, setFilter] = useState(createFilter());
     const [currentFilter, setCurrentFilter] = useState([[]]);
     const [currentProducts, setCurrentProducts] = useState(set_current_products());
-    const [favorit_product, setFavoritPproduct] = useState([])
+    const [favorit_product, setFavoritPproduct] = useState(' ')
     const [loaded, setLoaded] = useState(true)
 
  useEffect(() => {
 
         function favoritProductInit() {
         if(localStorage.getItem("favorit_product")){
-          setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
+           setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
         }
         else{
-        localStorage.setItem('favorit_product', " ");
+           localStorage.setItem('favorit_product', " ");
         }
 
             }

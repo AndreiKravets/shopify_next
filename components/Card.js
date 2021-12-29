@@ -6,14 +6,13 @@ import Image from 'next/image'
 
 export default function Card ({index, id, handle, title, images, price, setFavoritProduct, favorit_product}) {
 
-
     const style ={
         backgroundImage: `url(${images})`
     }
     const myLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
-
+    
     return(
         <div className="card_product_col" key={index}>
                 <div className="card_product">
