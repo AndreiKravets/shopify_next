@@ -6,6 +6,7 @@ import cart_store from "../../store/cart_store";
 import {observer} from "mobx-react-lite";
 import Prismic from "@prismicio/client";
 import Image from "next/image";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 
 const Product = observer( ({product, data})=> {
     let productData = false
@@ -25,6 +26,8 @@ const Product = observer( ({product, data})=> {
     const [temp_price, setTempPrice] = useState(() => price)
     const [variants, setVariants] = useState(() => product.variants[0])
     const [quantity, setQuantity] = useState(1)
+    const [popup, setPopup] = useState(false);
+
 
 
     function onVar (e, name, value, variants) {
@@ -65,7 +68,6 @@ const Product = observer( ({product, data})=> {
     const addToCart = async () => {
         const storage = window.localStorage;
         let checkoutId = storage.getItem("checkoutId");
-        console.log(checkoutId);
         if (!checkoutId) {
             const checkout = await shopifyClient.checkout.create();
             checkoutId = checkout.id;
@@ -83,121 +85,144 @@ const Product = observer( ({product, data})=> {
         return `${src}?w=${width}&q=${quality || 75}`
     }
     return(
-        <MainContainer>
-            <div className="container single_product_container">
-                <div className="row">
-                    <div className="col-6 single_product_image">
-                        {product.images.map((image,index) => {
-                            return (
-                                (index == 0 || (index == product.images.length-1 || (product.images.length-1 % 2 === 0) ) ?
-                                    <div className = "width_100">
-                                        <Image
-                                            loader={myLoader}
-                                            src={image.src} key={index}
-                                            alt={image.src}
-                                            width={500}
-                                            height={500}
-                                        />
+        <>
+            {popup == true ? <div className="product_popup popup active" onClick={() => {setPopup(false)}}>
+                  <div onClick={() => { setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div>
+                    {product.images.map((image, index) => {
+                        return (
+                            // <Image
+                            //     key={index}
+                            //     onClick={e => e.stopPropagation()}
+                            //     loader={myLoader}
+                            //     src={image.src}
+                            //     alt={image.src}
+                            //     width={500}
+                            //     height={500}
+                            // />
+                            <div key={index}><img src={image.src} alt={image.src}  onClick={e => e.stopPropagation()}/></div>
+                        )
+                    })}
+
+                </div> :
+                <MainContainer>
+                    <div className="container single_product_container">
+                        <div className="row">
+                            <div className="col-6 single_product_image" onClick={() => setPopup(true)}>
+                                {product.images.map((image, index) => {
+                                    return (
+                                        (index == 0 || (index == product.images.length - 1 || (product.images.length - 1 % 2 === 0)) ?
+                                                <div className="width_100">
+                                                    <Image
+                                                        loader={myLoader}
+                                                        src={image.src} key={index}
+                                                        alt={image.src}
+                                                        width={500}
+                                                        height={500}
+                                                    />
+                                                </div>
+                                                :
+                                                <div className="width_50">
+                                                    <Image
+                                                        loader={myLoader}
+                                                        src={image.src} key={index}
+                                                        alt={image.src}
+                                                        width={500}
+                                                        height={500}
+                                                    />
+                                                </div>
+                                        )
+                                    )
+                                })}
+                            </div>
+                            <div className="col-6">
+                                <div className="single_product_content">
+                                    <h4 className="product_title">{product.title}</h4>
+                                    <h5 className="product_price">$ {temp_price}</h5>
+                                    <div>
+                                        {product.options.map((option, index) => {
+                                            return (
+                                                <div className="product_options" key={index}>
+                                                    <div><span>{option.name}</span></div>
+                                                    <ul id={option.name}>
+                                                        {option.values.map((val, index) => {
+                                                            if (index == 0) {
+                                                                return (
+                                                                    <li
+                                                                        key={index}
+                                                                        className="active btn"
+                                                                        onClick={(e) => {
+                                                                            onVar(e, option.name, val.value, product.variants)
+                                                                        }}>
+                                                                        {val.value}
+                                                                    </li>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <li key={index}
+                                                                        className='btn'
+                                                                        onClick={(e) => {
+                                                                            onVar(e, option.name, val.value, product.variants)
+                                                                        }}>
+                                                                        {val.value}
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        })}
+                                                    </ul>
+                                                </div>
+
+                                            )
+                                        })}
                                     </div>
-                             :
-                                    <div className = "width_50">
-                                        <Image
-                                            loader={myLoader}
-                                            src={image.src} key={index}
-                                            alt={image.src}
-                                            width={500}
-                                            height={500}
-                                        />
-                                    </div>
-                                   )
-                            )
-                        })}
-                    </div>
-                    <div className="col-6">
-                        <div className="single_product_content">
-                        <h4 className="product_title">{product.title}</h4>
-                        <h5 className="product_price">$ {temp_price}</h5>
-                        <div>
-                            {product.options.map((option, index) => {
-                                return (
-                                    <div className="product_options" key={index}>
-                                        <div><span>{option.name}</span></div>
-                                        <ul id={option.name}>
-                                            { option.values.map((val, index) => {
-                                                if (index == 0) {
-                                                    return (
-                                                        <li
-                                                            key={index}
-                                                            className= "active btn"
-                                                            onClick = {(e) => {
-                                                                onVar(e, option.name, val.value, product.variants)
-                                                            }}>
-                                                            {val.value}
-                                                        </li>
-                                                    )
+                                    <div className="single_product_quantity">
+                                        <div><span>Quantity</span></div>
+                                        <ul>
+                                            <li className='btn'
+                                                onClick={(e) => {
+                                                    quantity <= 1 ? setQuantity(quantity) : setQuantity(quantity - 1)
+                                                    quantity <= 1 ? setTempPrice((quantity * price).toFixed(2)) : setTempPrice(((quantity - 1) * price).toFixed(2))
+                                                }}>-
+                                            </li>
+                                            <li className="quantity_li"><input
+                                                onChange={(e) => {
+                                                    e.target.value <= 1 ? setQuantity(1) : setQuantity(Number(e.target.value))
+                                                    e.target.value <= 1 ? setTempPrice(price) : setTempPrice((e.target.value * price).toFixed(2))
                                                 }
-                                                else {
-                                                    return (
-                                                        <li key={index}
-                                                            className= 'btn'
-                                                            onClick = {(e) => {
-                                                                onVar(e, option.name, val.value, product.variants)
-                                                            }}>
-                                                            {val.value}
-                                                        </li>
-                                                    )
                                                 }
-                                            })}
+                                                type="number"
+                                                actionPosition='left'
+                                                defaultValue='1'
+                                                value={quantity}
+                                            /></li>
+                                            <li className='btn'
+                                                onClick={(e) => {
+                                                    setQuantity(quantity + 1)
+                                                    setTempPrice(((quantity + 1) * price).toFixed(2))
+                                                }}>+
+                                            </li>
                                         </ul>
+
+                                    </div>
+                                    <div className="single_product_btn">
+                                        <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
+                                        <button className="btn_favorites">Favorites</button>
                                     </div>
 
-                                )
-                            })}
-                        </div>
-                        <div className="single_product_quantity">
-                            <div><span>Quantity</span></div>
-                            <ul>
-                                <li className= 'btn'
-                                    onClick = {(e) => {
-                                        quantity <= 1 ?  setQuantity(quantity) : setQuantity(quantity-1)
-                                        quantity <= 1 ? setTempPrice((quantity*price).toFixed(2)) : setTempPrice(((quantity-1)*price).toFixed(2))
-                                    }}>-</li>
-                                <li className="quantity_li"> <input
-                                    onChange={(e) => {
-                                        e.target.value <= 1 ? setQuantity(1) : setQuantity(Number(e.target.value))
-                                        e.target.value <= 1 ? setTempPrice(price) : setTempPrice((e.target.value * price).toFixed(2))
-                                      }
-                                    }
-                                    type="number"
-                                    actionPosition='left'
-                                    defaultValue='1'
-                                    value={quantity}
-                                /></li>
-                                <li className= 'btn'
-                                    onClick = {(e) => {
-                                        setQuantity(quantity+1)
-                                        setTempPrice(((quantity+1)*price).toFixed(2))
-                                    }}>+</li>
-                            </ul>
-
-                        </div>
-                        <div className="single_product_btn">
-                            <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
-                            <button className="btn_favorites" >Favorites</button>
-                        </div>
-
-                        <div>
-                            <h6>Description & Details</h6>
-                           {product.description}
-                        </div>
-                        <div>
-                            {productData == false ? '' :  <h6 style={{color: `${productData.color}`}}>{productData.title[0].text}</h6>}
-                        </div>
+                                    <div>
+                                        <h6>Description & Details</h6>
+                                        {product.description}
+                                    </div>
+                                    <div>
+                                        {productData == false ? '' :
+                                            <h6 style={{color: `${productData.color}`}}>{productData.title[0].text}</h6>}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </MainContainer>
+                </MainContainer>
+            }
+        </>
             )
 
 })
