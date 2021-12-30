@@ -89,17 +89,32 @@ const Product = observer( ({product, data})=> {
                     <div className="col-6 single_product_image">
                         {product.images.map((image,index) => {
                             return (
-                            <Image
-                                loader={myLoader}
-                                src={image.src} key={index}
-                                alt={image.src}
-                                width={500}
-                                height={500}
-                            />
+                                (index == 0 || (index == product.images.length-1 || (product.images.length-1 % 2 === 0) ) ?
+                                    <div className = "width_100">
+                                        <Image
+                                            loader={myLoader}
+                                            src={image.src} key={index}
+                                            alt={image.src}
+                                            width={500}
+                                            height={500}
+                                        />
+                                    </div>
+                             :
+                                    <div className = "width_50">
+                                        <Image
+                                            loader={myLoader}
+                                            src={image.src} key={index}
+                                            alt={image.src}
+                                            width={500}
+                                            height={500}
+                                        />
+                                    </div>
+                                   )
                             )
                         })}
                     </div>
-                    <div className="col-6 single_product_content">
+                    <div className="col-6">
+                        <div className="single_product_content">
                         <h4 className="product_title">{product.title}</h4>
                         <h5 className="product_price">$ {temp_price}</h5>
                         <div>
@@ -177,6 +192,7 @@ const Product = observer( ({product, data})=> {
                         </div>
                         <div>
                             {productData == false ? '' :  <h1 style={{color: `${productData.color}`}}>{productData.title[0].text}</h1>}
+                        </div>
                         </div>
                     </div>
                 </div>

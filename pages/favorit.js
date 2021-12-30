@@ -29,7 +29,8 @@ const Favorits = ({products}) => {
                     let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
                     const filteredFavoritProduct = products.filter( product =>tempFavoritProduct.includes(product.id))
                 setFilteredProducts(filteredFavoritProduct)
-                setCurrentProducts(filteredFavoritProduct.slice(0,quantity_products))
+               // setCurrentProducts(filteredFavoritProduct.slice(0,quantity_products))
+                setCurrentProducts(filteredFavoritProduct)
                 setPagination(createPagination(quantity_products, filteredProducts))
                 setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
             }

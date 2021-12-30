@@ -66,12 +66,32 @@
   padding-top: 70px;
   padding-bottom: 70px;
   .single_product_image{
+    display: flex;
+    flex-wrap: wrap;
+    .width_100{
+      padding: 3px 5px;
+      width: 100%;
+      div{
+        width: 100%;
+      }
+    }
+    .width_50{
+      padding: 3px 5px;
+      width: 50%;
+      div{
+        width: 100%;
+      }
+    }
+
     img{
       width: 100%;
       height: auto;
+      cursor: pointer;
     }
   }
   .single_product_content{
+    position: sticky;
+    top: 100px;
     .product_title{
       font-weight: 500;
       max-width: 500px;
