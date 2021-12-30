@@ -191,7 +191,7 @@ const Product = observer( ({product, data})=> {
                            {product.description}
                         </div>
                         <div>
-                            {productData == false ? '' :  <h1 style={{color: `${productData.color}`}}>{productData.title[0].text}</h1>}
+                            {productData == false ? '' :  <h6 style={{color: `${productData.color}`}}>{productData.title[0].text}</h6>}
                         </div>
                         </div>
                     </div>
