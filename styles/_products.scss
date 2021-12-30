@@ -68,7 +68,10 @@
   .single_product_image{
     display: flex;
     flex-wrap: wrap;
-    .width_100{
+    @include _media-small-down() {
+      order: 2;
+    }
+      .width_100{
       padding: 3px 5px;
       width: 100%;
       div{
@@ -92,23 +95,46 @@
   .single_product_content{
     position: sticky;
     top: 100px;
-    .product_title{
+    @include _media-small-down() {
+      padding-bottom: 30px;
+    }
+      .product_title{
       font-weight: 500;
       max-width: 500px;
       line-height: 1.4em;
       margin-bottom: 20px;
-    }
+      @include _media-small-down() {
+        margin-bottom: 8px;
+        font-size: 24px;
+       }
+      }
     .product_price{
       color: $brand-btn;
       font-weight: 600;
       margin-bottom: 10px;
-    }
+      @include _media-small-down() {
+      font-size: 22px;
+      }
+      }
     span{
       font-weight: 500;
       letter-spacing: 1.2px;
       margin-bottom: 10px;
       margin-top: 25px;
       display: inline-block;
+      @include _media-small-down() {
+        margin-top: 13px;
+        font-size: 18px;
+      }
+      }
+    .product_options_parent{
+      @include _media-small-down() {
+        display: flex;
+        flex-wrap: wrap;
+      }
+        .product_options{
+          margin-right: 15px;
+      }
     }
     ul{
       border: 1px solid black;
@@ -119,6 +145,10 @@
         border-left:1px solid black;
         background-color: white;
         cursor: pointer;
+        @include _media-small-down() {
+          font-size: 19px;
+          font-weight: 500;
+        }
         &.active{
           background-color: #EFEFEF;
         }
@@ -135,8 +165,13 @@
     }
     .single_product_btn{
       display: flex;
+      flex-wrap: wrap;
       margin-top: 50px;
       margin-bottom: 40px;
+      @include _media-xs-down() {
+        margin-top: 24px;
+        margin-bottom: 14px;
+      }
       button{
         text-transform: uppercase;
         color: white;
@@ -148,11 +183,14 @@
         border: none;
         transition:all .3s ease-in-out;
         cursor: pointer;
+        margin-bottom: 10px;
         &:hover{
           background-color: $brand-hover;
           transition:all .3s ease-in-out;
         }
-
+        @include _media-xs-down() {
+        width: 100%;
+        }
       }
       .btn_add_to_cart{
         min-width: 310px;
@@ -161,13 +199,28 @@
         &:focus{
           background-color: #0C1821 !important;
         }
-      }
+         @include _media-lg-down() {
+           min-width: 215px;
+         }
+         @include _media-md-down() {
+           min-width: 300px;
+         }
+        @include _media-xs-down() {
+          margin-right: 0;
+        }
+        }
       .btn_favorites{
         min-width: 200px;
         background-color: $brand-btn;
         &:focus{
           background-color: $brand-btn !important;
         }
+         @include _media-lg-down() {
+           min-width: 215px;
+         }
+         @include _media-md-down() {
+           min-width: 300px;
+         }
       }
     }
   }

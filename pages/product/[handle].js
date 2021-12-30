@@ -106,7 +106,7 @@ const Product = observer( ({product, data})=> {
                 <MainContainer>
                     <div className="container single_product_container">
                         <div className="row">
-                            <div className="col-6 single_product_image" onClick={() => setPopup(true)}>
+                            <div className="col-md-6 single_product_image" onClick={() => setPopup(true)}>
                                 {product.images.map((image, index) => {
                                     return (
                                         (index == 0 || (index == product.images.length - 1 || (product.images.length - 1 % 2 === 0)) ?
@@ -133,11 +133,11 @@ const Product = observer( ({product, data})=> {
                                     )
                                 })}
                             </div>
-                            <div className="col-6">
+                            <div className="col-md-6">
                                 <div className="single_product_content">
                                     <h4 className="product_title">{product.title}</h4>
                                     <h5 className="product_price">$ {temp_price}</h5>
-                                    <div>
+                                    <div className="product_options_parent">
                                         {product.options.map((option, index) => {
                                             return (
                                                 <div className="product_options" key={index}>
