@@ -86,23 +86,22 @@ const Product = observer( ({product, data})=> {
     }
     return(
         <>
-            {popup == true ? <div className="product_popup popup active" onClick={() => {setPopup(false)}}>
+            {popup == true ?
+                <div className="product_popup popup active" onClick={() => {setPopup(false)}}>
                   <div onClick={() => { setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div>
                     {product.images.map((image, index) => {
                         return (
-                            // <Image
-                            //     key={index}
-                            //     onClick={e => e.stopPropagation()}
-                            //     loader={myLoader}
-                            //     src={image.src}
-                            //     alt={image.src}
-                            //     width={500}
-                            //     height={500}
-                            // />
-                            <div key={index}><img src={image.src} alt={image.src}  onClick={e => e.stopPropagation()}/></div>
-                        )
+                            <Image
+                                key={index}
+                                onClick={e => e.stopPropagation()}
+                                loader={myLoader}
+                                src={image.src}
+                                alt={image.src}
+                                width={500}
+                                height={500}
+                            />
+                         )
                     })}
-
                 </div> :
                 <MainContainer>
                     <div className="container single_product_container">

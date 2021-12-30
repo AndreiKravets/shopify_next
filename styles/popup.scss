@@ -85,25 +85,27 @@
   &.product_popup {
     position: relative;
     flex-wrap: wrap;
+    padding: 30px 0;
+    background-color: #F5F5F5;
     .product_popup_close{
-      color: white;
+      color: $brand-btn;
       font-size: 40px;
       position: fixed;
-      top: 30px;
+      top: 10px;
       width: 50px;
-      right: 30px;
+      right: 10px;
+      z-index: 9;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     div{
-      width: 100%;
-      max-width: 100%;
       text-align: center;
+      width: 95%;
+      max-width: 1200px !important;
     }
     img{
-      width: 95%;
-      max-width: 1200px;
+      width: 100%;
       height: auto;
     }
   }

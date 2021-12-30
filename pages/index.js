@@ -75,7 +75,6 @@ export default function Home({collections,homepage,slider,isVisible}) {
             slidesToShow: 1,
             slidesToScroll: 1
         }
-console.log(homepage)
 
     async function getProduct(product) {
         setProduct(product)
