@@ -7,6 +7,7 @@ import ProductPopup from "../components/ProductPopup"
 import {toJS} from 'mobx';
 import products_store from "../store/products_store";
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 import {motion} from "framer-motion";
 
 
@@ -188,7 +189,7 @@ const Products = ({products}) => {
     <>
      {popup == true ? <div className="popup active" onClick={() => {
                                 setPopup(false)
-                            }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
+                            }}><div onClick={() => { setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div><ProductPopup product={product}/></div> : <div className="popup"></div>}
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
                 <p>collection</p>

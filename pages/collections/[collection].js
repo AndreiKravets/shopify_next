@@ -137,7 +137,7 @@ const CollectionPage = ({collections}) => {
         <>
             {popup == true ? <div className="popup active" onClick={() => {
                 setPopup(false)
-            }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
+            }}><ProductPopup product={product}/><div onClick={() => { setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div></div> : <div className="popup"></div>}
             <MainContainer title={'product'}>
                 <div className="container-fluid products_top_section">
                     <p>collection</p>
