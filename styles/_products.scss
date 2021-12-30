@@ -65,7 +65,10 @@
 .single_product_container{
   padding-top: 30px;
   padding-bottom: 70px;
-  .single_product_image{
+  @include _media-small-down() {
+    padding-bottom: 0;
+  }
+    .single_product_image{
     display: flex;
     flex-wrap: wrap;
     @include _media-small-down() {
