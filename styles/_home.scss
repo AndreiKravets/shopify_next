@@ -9,7 +9,7 @@
     font-weight: 500;
     margin-bottom: 30px;
   }
-  span{
+  strong{
     color: $brand-hover;
   }
   .slick-slide>div{
@@ -152,9 +152,11 @@
       flex-wrap: wrap;
     }
     .home_legendary_text{
-      font-weight: 500;
-      font-size: 17px;
-      line-height: 1.3em;
+      p{
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 1.3em;
+      }
       @include _media-small-down() {
         order:2;
       }

@@ -132,7 +132,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
             </div>
             <div className='row home_collections_legendary'>
                 <div className="col-md-2"></div>
-                <div className="col-md-5 home_legendary_text">{homepage.legendary_text[0].text}</div>
+                <div className="col-md-5 home_legendary_text">{RichText.render(homepage.legendary_text)}</div>
                 <div className="col-md-5 home_legendary_image"><img src={homepage.legendary_image.url} alt=""/></div>
             </div>
         </div>
@@ -211,7 +211,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
             <div className='row home_subscribe'>
                 <div className="col-md-6"><img src={homepage.subscribe_image.url} alt=""/></div>
                 <div className="col-md-6">
-                   <p>{homepage.subscribe_text[0].text}</p>
+                    {RichText.render(homepage.subscribe_text)}
                     <form action="" method="POST">
                         <input id="name" type="text" autoComplete="name" placeholder="Enter your email address" required/>
                         <button type="submit">Submit <BsArrowRight/> </button>
