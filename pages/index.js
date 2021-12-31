@@ -97,11 +97,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                      <div className="row">
                         <div className="col-md-4">
                             <h1>{slide.data.title[0].text}</h1>
-                            {slide.data.subtitle.map((paragraph, index) => {
-                                return (
-                                paragraph.text
-                                )
-                            })}
+                            {RichText.render(slide.data.subtitle)}
                         </div>
                         <div className="col-md-8"style={{backgroundImage: `url(${slide.data.big_image.url})`}}>
                             <img src={slide.data.small_image.url} />
