@@ -7,7 +7,10 @@
   padding-top: 150px;
   text-align: center;
   margin-bottom: 50px;
-  h1{
+  @include _media-small-down() {
+    margin-bottom: 26px;
+  }
+    h1{
     color: white;
     font-weight: 500;
     text-transform: uppercase;

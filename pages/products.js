@@ -15,6 +15,7 @@ const Products = ({products}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
+    const [filterClassActive, setFilterClassActive] = useState(true);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
     const [pagination, setPagination] = useState(createPagination(quantity_products,filteredProducts));
     const [filter, setFilter] = useState(createFilter());
@@ -190,7 +191,7 @@ const Products = ({products}) => {
      {popup == true ? <div className="popup active" onClick={() => {
                                 setPopup(false)
                             }}>
-                            <div onClick={() => {setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div>
+                            <div onClick={() => {setPopup(false)}}  className="product_popup_close"><AiOutlineCloseSquare/></div>
                             <ProductPopup product={product}/>
                             </div> : <div className="popup"></div>}
         <MainContainer title={'product'}>
@@ -200,8 +201,7 @@ const Products = ({products}) => {
             </div>
             <div className="container products">
                 <div className="row">
-                    <div className="col-md-2">
-
+                    <div className= {filterClassActive == true ? "col-md-2 active" onClick={() => { setFilterClassActive(false)}} : "col-md-2" onClick={() => { setFilterClassActive(true)}}} >
                         {filter.map((option, index) => {
                             return (
                                 <motion.ul className="products_filter"

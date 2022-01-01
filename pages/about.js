@@ -3,6 +3,7 @@ import Prismic from "@prismicio/client";
 import {motion} from "framer-motion";
 import React from "react";
 import Image from 'next/image'
+import {RichText} from "prismic-reactjs";
 
 export default function About({ data }) {
 const about = data.results[0].data
@@ -31,11 +32,7 @@ const about = data.results[0].data
                     <div className="row">
                         <div className="col-md-6">
                          <h1>{about.title[0].text}</h1>
-                            {about.content.map((paragraph, index) => {
-                                return (
-                                    <p key={index}>{paragraph.text}</p>
-                                )
-                            })}
+                            {RichText.render(about.content)}
                         </div>
                         <div className="col-md-6">
                             <Image
