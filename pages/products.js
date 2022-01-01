@@ -8,6 +8,7 @@ import {toJS} from 'mobx';
 import products_store from "../store/products_store";
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import { BsFillCaretDownFill, BsFillCaretLeftFill} from "react-icons/bs";
 import {motion} from "framer-motion";
 
 
@@ -15,7 +16,7 @@ const Products = ({products}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
-    const [filterClassActive, setFilterClassActive] = useState(true);
+    const [filterClassActive, setFilterClassActive] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
     const [pagination, setPagination] = useState(createPagination(quantity_products,filteredProducts));
     const [filter, setFilter] = useState(createFilter());
@@ -201,11 +202,12 @@ const Products = ({products}) => {
             </div>
             <div className="container products">
                 <div className="row">
-                    <div className= {filterClassActive == true ? "col-md-2 active" onClick={() => { setFilterClassActive(false)}} : "col-md-2" onClick={() => { setFilterClassActive(true)}}} >
+                    <div className= {filterClassActive == true ? "col-md-2 active" : "col-md-2"}>
+                    <div className="toggle_filter" onClick={() => setFilterClassActive(!filterClassActive)}>{filterClassActive == true ? <BsFillCaretDownFill/> : <BsFillCaretLeftFill/>}</div>
                         {filter.map((option, index) => {
                             return (
                                 <motion.ul className="products_filter"
-                                key={index}
+                                 key={index}
                                  variants={ul_filter}
                                  initial="hidden"
                                  animate="show"><h5>{option.name}</h5>

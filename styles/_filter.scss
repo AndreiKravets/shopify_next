@@ -11,22 +11,65 @@
     top: 0;
   }
   .col-md-2 {
-    @include _media-small-down() {
+    .toggle_filter {
+    display: none;
+      font-size: 24px;
+      color: $brand-btn;
+    }
+      @include _media-small-down() {
     display: flex;
       flex-wrap: wrap;
+      position: relative;
+        height: 100%;
+        padding-bottom: 20px;
+      .toggle_filter{
+        position: absolute;
+        width: 100%;
+        //height: 35px;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-right: 20px;
+        transition:all .3s ease-in-out;
+      }
+      &.active{
+        .products_filter {
+          @include _media-small-down() {
+            margin-right: 10px;
+            height: 100%;
+            overflow: hidden;
+            margin-bottom: 0px;
+            transition:all .3s ease-in-out;
+            li{
+              font-size: 15px !important;
+              transition:all .3s ease-in-out;
+              margin-bottom: 3px;
+            }
+          }
+        }
+      }
+
     }
       .products_filter {
       margin-bottom: 10px;
         @include _media-small-down() {
           margin-right: 10px;
-          height: 22px;
+          //height: 35px;
           overflow: hidden;
-          margin-bottom: 20px;
+          margin-bottom: 0px;
+          transition:all .3s ease-in-out;
+          li{
+            font-size: 0px !important;
+            transition:all .3s ease-in-out;
+            margin-bottom: 0px !important;
+          }
         }
           h5 {
-        padding-bottom: 5px;
-        font-weight: 500;
-      }
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-weight: 500;
+         }
 
       li {
         display: flex;
