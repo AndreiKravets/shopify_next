@@ -11,10 +11,12 @@ const myLoader = ({ src, width, quality }) => {
 }
 const Collections = ({products}) => {
     return (
-        <MainContainer title={'product'}>
+        <MainContainer>
             <div className="container-fluid products_top_section">
-                <p>collection</p>
-                <h1>All Collection</h1>
+                <div>
+                    <p>collection</p>
+                    <h1>All Collection</h1>
+                </div>
             </div>
             <div className="container">
                 <div className="row">

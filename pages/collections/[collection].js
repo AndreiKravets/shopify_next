@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useRouter} from "next/router"
 import MainContainer from "../../components/MainContainer";
 import Link from "next/link"
@@ -24,8 +24,46 @@ const CollectionPage = ({collections}) => {
     const [filter, setFilter] = useState(createFilter());
     const [currentFilter, setCurrentFilter] = useState([[]]);
     const [currentProducts, setCurrentProducts] = useState(set_current_products());
+    const [favorit_product, setFavoritPproduct] = useState(' ')
+    const [loaded, setLoaded] = useState(true)
 
-    console.log(collection)
+
+    useEffect(() => {
+
+        function favoritProductInit() {
+            if(localStorage.getItem("favorit_product")){
+                setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
+            }
+            else{
+                localStorage.setItem('favorit_product', " ");
+            }
+
+        }
+        if (loaded){
+            setLoaded(false)
+            favoritProductInit()
+        }
+    }, []);
+
+    function setFavoritProduct(id){
+        const storage = window.localStorage;
+        let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
+        if(tempFavoritProduct[0] == " "){ tempFavoritProduct = []}
+
+        if (tempFavoritProduct.includes(id)){
+            tempFavoritProduct = tempFavoritProduct.filter((item) => item !== id)
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+        else {
+            tempFavoritProduct.push(id)
+            console.log(tempFavoritProduct)
+            tempFavoritProduct.join(',')
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+    }
+
 
     function set_current_products() {
         return (
@@ -145,19 +183,19 @@ const CollectionPage = ({collections}) => {
                </div> : <div className="popup"></div>}
             <MainContainer title={'product'}>
                 <div className="container-fluid products_top_section">
-                    <p>collection</p>
-                    <h1>{collection[0].title}</h1>
+                    <div>
+                        <p>collection</p>
+                        <h1>{collection[0].title}</h1>
+                    </div>
                 </div>
                 <div className="container products">
                     <div className="row">
                         <div className="col-md-2">
-
                             {filter.map((option, index) => {
                                 return (
                                     <ul className="products_filter" key={index}><h5>{option.name}</h5>
                                         {option.values.map((value, index) => {
                                             return (
-
                                                 <li
                                                     key={index}
                                                     onClick={() => set_current_filter(option.name, value)}
@@ -209,6 +247,8 @@ const CollectionPage = ({collections}) => {
                                                         title={product.title}
                                                         description={product.description}
                                                         price={product.variants[0].price}
+                                                        setFavoritProduct={setFavoritProduct}
+                                                        favorit_product={favorit_product}
                                                     />
                                                 </motion.div>
                                             </div>

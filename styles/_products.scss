@@ -1,14 +1,21 @@
 .products_top_section{
   background-image: url("/products.jpg");
+  background-size: cover;
+  background-position: center;
   color: white;
   position: relative;
   z-index: 0;
   min-height: 460px;
-  padding-top: 150px;
+  display: flex;
+  align-items: center;
   text-align: center;
   margin-bottom: 50px;
   @include _media-small-down() {
     margin-bottom: 26px;
+    min-height: 320px;
+  }
+  div{
+    margin: auto;
   }
     h1{
     color: white;

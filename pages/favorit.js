@@ -98,8 +98,10 @@ const Favorits = ({products}) => {
             }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
             <MainContainer title={'product'}>
                 <div className="container-fluid products_top_section">
-                    <p>collection</p>
-                    <h1>Favorit Products</h1>
+                    <div>
+                        <p>collection</p>
+                        <h1>Favorit Products</h1>
+                    </div>
                 </div>
                 <div className="container products">
                             <motion.div initial="initial" animate="enter" exit="exit" variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>

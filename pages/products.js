@@ -197,8 +197,10 @@ const Products = ({products}) => {
                             </div> : <div className="popup"></div>}
         <MainContainer title={'product'}>
             <div className="container-fluid products_top_section">
-                <p>collection</p>
-                <h1>All Products</h1>
+              <div>
+                 <p>collection</p>
+                 <h1>All Products</h1>
+              </div>
             </div>
             <div className="container products">
                 <div className="row">

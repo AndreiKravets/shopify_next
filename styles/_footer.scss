@@ -32,12 +32,11 @@ footer{
         color: $brand-btn;
         font-size: 25px;
         svg{
-          stroke: black;
           stroke-width: 16;
           stroke-linecap: round;
         }
         &:hover{
-          color: black;
+          color: $brand-hover;
         }
       }
     }
