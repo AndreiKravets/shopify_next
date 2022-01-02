@@ -154,6 +154,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                                 images={product.images[0].src}
                                 index={index}
                                 id={product.id}
+                                route={`/collections/${all_products[0].handle}`}
                                 handle={product.handle}
                                 title={product.title}
                                 description={product.description}
@@ -185,6 +186,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
                                 images={product.images[0].src}
                                 index={index}
                                 id={product.id}
+                                route={`/collections/${under_products[0].handle}`}
                                 handle={product.handle}
                                 title={product.title}
                                 description={product.description}
