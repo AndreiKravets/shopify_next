@@ -7,7 +7,8 @@ import Card from "../../components/Card"
 import ProductPopup from "../../components/ProductPopup"
 import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
 import {motion} from "framer-motion";
-import { AiOutlineCloseSquare } from "react-icons/ai";
+import {AiOutlineCloseSquare} from "react-icons/ai";
+import { BsFillCaretDownFill, BsFillCaretLeftFill} from "react-icons/bs";
 
 
 
@@ -19,6 +20,7 @@ const CollectionPage = ({collections}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')
     const [popup, setPopup] = useState(false);
+    const [filterClassActive, setFilterClassActive] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
     const [pagination, setPagination] = useState(createPagination(quantity_products, filteredProducts));
     const [filter, setFilter] = useState(createFilter());
@@ -31,31 +33,32 @@ const CollectionPage = ({collections}) => {
     useEffect(() => {
 
         function favoritProductInit() {
-            if(localStorage.getItem("favorit_product")){
+            if (localStorage.getItem("favorit_product")) {
                 setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
-            }
-            else{
+            } else {
                 localStorage.setItem('favorit_product', " ");
             }
 
         }
-        if (loaded){
+
+        if (loaded) {
             setLoaded(false)
             favoritProductInit()
         }
     }, []);
 
-    function setFavoritProduct(id){
+    function setFavoritProduct(id) {
         const storage = window.localStorage;
         let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
-        if(tempFavoritProduct[0] == " "){ tempFavoritProduct = []}
+        if (tempFavoritProduct[0] == " ") {
+            tempFavoritProduct = []
+        }
 
-        if (tempFavoritProduct.includes(id)){
+        if (tempFavoritProduct.includes(id)) {
             tempFavoritProduct = tempFavoritProduct.filter((item) => item !== id)
             storage.setItem('favorit_product', tempFavoritProduct)
             setFavoritPproduct(tempFavoritProduct)
-        }
-        else {
+        } else {
             tempFavoritProduct.push(id)
             console.log(tempFavoritProduct)
             tempFavoritProduct.join(',')
@@ -179,8 +182,10 @@ const CollectionPage = ({collections}) => {
                 setPopup(false)
             }}>
                 <ProductPopup product={product}/>
-                <div onClick={() => { setPopup(false)}} className="product_popup_close"><AiOutlineCloseSquare/></div>
-               </div> : <div className="popup"></div>}
+                <div onClick={() => {
+                    setPopup(false)
+                }} className="product_popup_close"><AiOutlineCloseSquare/></div>
+            </div> : <div className="popup"></div>}
             <MainContainer title={'product'}>
                 <div className="container-fluid products_top_section">
                     <div>
@@ -190,7 +195,8 @@ const CollectionPage = ({collections}) => {
                 </div>
                 <div className="container products">
                     <div className="row">
-                        <div className="col-md-2">
+                        <div className= {filterClassActive == true ? "col-md-2 active" : "col-md-2"}>
+                            <div className="toggle_filter" onClick={() => setFilterClassActive(!filterClassActive)}>{filterClassActive == true ? <BsFillCaretDownFill/> : <BsFillCaretLeftFill/>}</div>
                             {filter.map((option, index) => {
                                 return (
                                     <ul className="products_filter" key={index}><h5>{option.name}</h5>
@@ -222,36 +228,38 @@ const CollectionPage = ({collections}) => {
                                     {currentProducts.map((product, index) => {
 
                                         return (
-                                            <div className="col-md-4"
-                                                 onClick={() => getProduct(product)}
-                                                 key={index}>
-                                                <motion.div initial="hidden" whileInView="visible" key={product.id}
-                                                            variants={{
-                                                                hidden: {
-                                                                    scale: .8,
-                                                                    opacity: 0
-                                                                },
-                                                                visible: {
-                                                                    scale: 1,
-                                                                    opacity: 1,
-                                                                    transition: {
-                                                                        delay: .1
-                                                                    }
-                                                                }
-                                                            }}>
-                                                    <Card
-                                                        images={product.images[0].src}
-                                                        index={index}
-                                                        id={product.id}
-                                                        handle={product.handle}
-                                                        title={product.title}
-                                                        description={product.description}
-                                                        price={product.variants[0].price}
-                                                        setFavoritProduct={setFavoritProduct}
-                                                        favorit_product={favorit_product}
-                                                    />
-                                                </motion.div>
-                                            </div>
+                                            <motion.div className="col-md-4"
+                                                        onClick={() => getProduct(product)}
+                                                        initial="hidden" whileInView="visible"
+                                                        key={product.id} variants={{
+                                                hidden: {
+                                                    scale: .8,
+                                                    opacity: 0,
+                                                    y: -100
+                                                },
+                                                visible: {
+                                                    scale: 1,
+                                                    y: 0,
+                                                    opacity: 1,
+                                                    transition: {
+                                                        delay: 0.05,
+                                                        duration: .2, ease: [0.48, 0.15, 0.25, 0.96]
+                                                    }
+                                                }
+                                            }}>
+                                                <Card
+                                                    images={product.images[0].src}
+                                                    index={index}
+                                                    id={product.id}
+                                                    handle={product.handle}
+                                                    route={collection[0].handle}
+                                                    title={product.title}
+                                                    description={product.description}
+                                                    price={product.variants[0].price}
+                                                    setFavoritProduct={setFavoritProduct}
+                                                    favorit_product={favorit_product}
+                                                />
+                                            </motion.div>
                                         )
                                     })
                                     }

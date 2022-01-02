@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from 'next/image'
 
 
-export default function Card({index, id, handle, title, images, price, setFavoritProduct, favorit_product}) {
+export default function Card({index, id, route, handle, title, images, price, setFavoritProduct, favorit_product}) {
 
     const style = {
         backgroundImage: `url(${images})`
@@ -40,8 +40,8 @@ export default function Card({index, id, handle, title, images, price, setFavori
                 } className="favorit_icon"/> : " "}
             </div>
             <div onClick={e => e.stopPropagation()} className="card_link_block">
-                <Link href={`/product/${handle}`}>{title}</Link>
-                <Link href={`/product/${handle}`}><a className='card_price'>FROM ${`${price} `}</a></Link>
+                <Link href={`${route}/${handle}`}>{title}</Link>
+                <Link href={`${route}/${handle}`}><a className='card_price'>FROM ${`${price} `}</a></Link>
             </div>
         </div>
     )

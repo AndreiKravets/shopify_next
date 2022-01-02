@@ -237,12 +237,16 @@ const Products = ({products}) => {
                                     <button onClick={clearFilter}>Clear Filter</button>
                                     </div>
                                     </div>
-                                <motion.div initial="initial" animate="enter" exit="exit" variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
+                                <motion.div initial="initial" animate="enter" exit="exit"
+                                 variants={{ exit: { transition: { staggerChildren: 0.1 }}}}>
                         <div className="row">
                             {currentProducts.map((product, index) => {
 
                                 return (
-                                            <motion.div className="col-md-4" onClick={() => getProduct(product)} initial="hidden" whileInView="visible" key={product.id} variants={{
+                                            <motion.div className="col-md-4"
+                                             onClick={() => getProduct(product)}
+                                             initial="hidden" whileInView="visible"
+                                             key={product.id} variants={{
                                                          hidden: {
                                                              scale: .8,
                                                              opacity: 0,
@@ -262,6 +266,7 @@ const Products = ({products}) => {
                                             images={product.images[0].src}
                                             index={index}
                                             id={product.id}
+                                            route="products"
                                             handle={product.handle}
                                             title={product.title}
                                             description={product.description}
