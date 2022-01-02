@@ -306,11 +306,11 @@
 .btn_clear_filter{
   text-align: right;
   button {
-    border-radius: 40px;
     background-color: unset;
-    border: 1px solid;
     margin-bottom: 20px;
     padding: 5px 15px;
     font-weight: 500;
+    border: 1px solid #d5d5d5;
+    color: #666666;
   }
 }
