@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {shopifyClient} from "../../../utils/shopify"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainContainer from "../../../components/MainContainer";
 import cart_store from "../../../store/cart_store";
 import {observer} from "mobx-react-lite";
 import Prismic from "@prismicio/client";
 import Image from "next/image";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import {FaRegHeart} from "react-icons/fa";
 
 const Product = observer( ({product, data})=> {
     let productData = false
@@ -27,6 +28,44 @@ const Product = observer( ({product, data})=> {
     const [variants, setVariants] = useState(() => product.variants[0])
     const [quantity, setQuantity] = useState(1)
     const [popup, setPopup] = useState(false);
+    const [favorit_product, setFavoritPproduct] = useState(' ')
+    const [loaded, setLoaded] = useState(true)
+
+    useEffect(() => {
+
+        function favoritProductInit() {
+            if(localStorage.getItem("favorit_product")){
+                setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
+            }
+            else{
+                localStorage.setItem('favorit_product', " ");
+            }
+
+        }
+        if (loaded){
+            setLoaded(false)
+            favoritProductInit()
+        }
+    }, []);
+
+    function setFavoritProduct(id){
+        const storage = window.localStorage;
+        let tempFavoritProduct = (JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','));
+        if(tempFavoritProduct[0] == " "){ tempFavoritProduct = []}
+
+        if (tempFavoritProduct.includes(id)){
+            tempFavoritProduct = tempFavoritProduct.filter((item) => item !== id)
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+        else {
+            tempFavoritProduct.push(id)
+            console.log(tempFavoritProduct)
+            tempFavoritProduct.join(',')
+            storage.setItem('favorit_product', tempFavoritProduct)
+            setFavoritPproduct(tempFavoritProduct)
+        }
+    }
 
 
 
@@ -204,12 +243,14 @@ const Product = observer( ({product, data})=> {
                                     </div>
                                     <div className="single_product_btn">
                                         <button className="btn_add_to_cart" onClick={addToCart}>Add to cart</button>
-                                        <button className="btn_favorites">Favorites</button>
+                                        <button className="btn_favorites" onClick={e => {setFavoritProduct(product.id)}}>
+                                            {favorit_product.includes(product.id) ? <FaRegHeart/> : " "}
+                                            Favorites</button>
                                     </div>
 
                                     <div>
                                         <h6>Description & Details</h6>
-                                        {product.description}
+                                        <p>{product.description}</p>
                                     </div>
                                     <div>
                                         {productData == false ? '' :

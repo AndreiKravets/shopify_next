@@ -77,13 +77,58 @@
   padding-bottom: 70px;
   @include _media-small-down() {
     padding-bottom: 0;
+    padding-top: 15px;
   }
     .single_product_image{
-    display: flex;
-    flex-wrap: wrap;
+
+      .single_product_image_lg{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .single_product_image_sm{
+        display: none;
+        .slick-slider{
+          width: 100%;
+          .slick-track{
+            width: 100%;
+          }
+          .slick-dots {
+            bottom: -30px;
+            li {
+              margin: 0px 3px;
+
+              button:before {
+                font-family: 'slick';
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
     @include _media-small-down() {
-      order: 2;
+      //order: 2;
+      .single_product_image_lg{
+        display: none;
+      }
+      .single_product_image_sm{
+        display: block;
+        margin-bottom: 40px;
+      }
     }
+
+      .product_title{
+        display: none;
+        font-weight: 500;
+        max-width: 500px;
+        line-height: 1.4em;
+        margin-bottom: 20px;
+        font-size: 30px;
+        @include _media-small-down() {
+          margin-bottom: 8px;
+          font-size: 24px;
+          display: block;
+        }
+      }
       .width_100{
       padding: 3px 5px;
       width: 100%;
@@ -116,22 +161,25 @@
       max-width: 500px;
       line-height: 1.4em;
       margin-bottom: 20px;
+        font-size: 30px;
       @include _media-small-down() {
         margin-bottom: 8px;
         font-size: 24px;
+        display: none;
        }
       }
     .product_price{
       color: $brand-btn;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-weight: 500;
+      margin-bottom: 0px;
+      letter-spacing: 1.3px;
       @include _media-small-down() {
       font-size: 22px;
       }
       }
     span{
       font-weight: 500;
-      letter-spacing: 1.2px;
+      letter-spacing: 2px;
       margin-bottom: 10px;
       margin-top: 25px;
       display: inline-block;
@@ -140,6 +188,13 @@
         font-size: 18px;
       }
       }
+    p{
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+    h6{
+      font-weight: 500;
+    }
     .product_options_parent{
       @include _media-small-down() {
         display: flex;
@@ -224,7 +279,12 @@
         }
       .btn_favorites{
         min-width: 200px;
-        background-color: $brand-btn;
+        background-color: #E7CF8B;
+        position: relative;
+        svg{
+          position: absolute;
+          left: 16px;
+        }
         &:focus{
           background-color: $brand-btn !important;
         }
