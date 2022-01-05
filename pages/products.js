@@ -12,6 +12,7 @@ import { BsFillCaretDownFill, BsFillCaretLeftFill} from "react-icons/bs";
 import {motion} from "framer-motion";
 
 
+
 const Products = ({products}) => {
     const quantity_products = 6;
     const [product, setProduct] = useState('')

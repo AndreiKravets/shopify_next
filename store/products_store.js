@@ -1,6 +1,5 @@
 import {makeAutoObservable} from "mobx";
 import {client} from "../utils/shopify";
-import { toJS } from 'mobx';
 
 
 
@@ -13,7 +12,6 @@ class Products_store {
     allProducts = 1;
     allCollections = "1";
 
-        // client.collection.fetchAllWithProducts().then((collections) => {collections = JSON.parse(JSON.stringify(collections)); return collections});
     constructor() {
         makeAutoObservable(this)
     }

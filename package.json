@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@frontend-sdk/klaviyo": "^0.24.2",
     "@prismicio/client": "^5.1.0",
     "framer-motion": "^5.3.3",
     "mobx": "^6.3.3",

@@ -11,10 +11,12 @@ import {motion} from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
 import InstagramEmbed from 'react-instagram-embed';
+import { useKlaviyo } from '@frontend-sdk/klaviyo'
 
 
 
 export default function Home({collections,homepage,slider,isVisible}) {
+    useKlaviyo('SPdRQS')
     homepage = homepage.results[0].data
     slider = slider.results
     const home_collections = collections.filter(collection => collection.handle == 'chain' || collection.handle == 'combos' || collection.handle == 'bracelets')

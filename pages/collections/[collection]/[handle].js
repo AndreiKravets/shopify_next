@@ -8,6 +8,7 @@ import Prismic from "@prismicio/client";
 import Image from "next/image";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import {FaRegHeart} from "react-icons/fa";
+import Slider from "react-slick";
 
 const Product = observer( ({product, data})=> {
     let productData = false
@@ -123,6 +124,15 @@ const Product = observer( ({product, data})=> {
     const myLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
+    const settings = {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    }
     return(
         <>
             {popup == true ?
@@ -146,31 +156,50 @@ const Product = observer( ({product, data})=> {
                     <div className="container single_product_container">
                         <div className="row">
                             <div className="col-md-6 single_product_image" onClick={() => setPopup(true)}>
-                                {product.images.map((image, index) => {
-                                    return (
-                                        (index == 0 || (index == product.images.length - 1 || (product.images.length - 1 % 2 === 0)) ?
-                                                <div className="width_100">
-                                                    <Image
-                                                        loader={myLoader}
-                                                        src={image.src} key={index}
-                                                        alt={image.src}
-                                                        width={500}
-                                                        height={500}
-                                                    />
-                                                </div>
-                                                :
-                                                <div className="width_50">
-                                                    <Image
-                                                        loader={myLoader}
-                                                        src={image.src} key={index}
-                                                        alt={image.src}
-                                                        width={500}
-                                                        height={500}
-                                                    />
-                                                </div>
+                                <div className="single_product_image_sm">
+                                    <h1 className="product_title">{product.title}</h1>
+                                    <Slider {...settings}>
+                                        {product.images.map((image, index) => {
+                                            return (
+                                                <Image
+                                                    key={index}
+                                                    loader={myLoader}
+                                                    src={image.src}
+                                                    alt={image.src}
+                                                    width={500}
+                                                    height={500}
+                                                />
+                                            )
+                                        })}
+                                    </Slider>
+                                </div>
+                                <div className="single_product_image_lg">
+                                    {product.images.map((image, index) => {
+                                        return (
+                                            (index == 0 || (index == product.images.length - 1 || (product.images.length - 1 % 2 === 0)) ?
+                                                    <div className="width_100">
+                                                        <Image
+                                                            loader={myLoader}
+                                                            src={image.src} key={index}
+                                                            alt={image.src}
+                                                            width={500}
+                                                            height={500}
+                                                        />
+                                                    </div>
+                                                    :
+                                                    <div className="width_50">
+                                                        <Image
+                                                            loader={myLoader}
+                                                            src={image.src} key={index}
+                                                            alt={image.src}
+                                                            width={500}
+                                                            height={500}
+                                                        />
+                                                    </div>
+                                            )
                                         )
-                                    )
-                                })}
+                                    })}
+                                </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="single_product_content">

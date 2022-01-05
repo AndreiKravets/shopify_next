@@ -91,6 +91,9 @@
           width: 100%;
           .slick-track{
             width: 100%;
+            div{
+              width: 100%;
+            }
           }
           .slick-dots {
             bottom: -30px;
@@ -112,7 +115,8 @@
       }
       .single_product_image_sm{
         display: block;
-        margin-bottom: 40px;
+        margin-bottom: 55px;
+        margin-top: 5px;
       }
     }
 
@@ -124,8 +128,8 @@
         margin-bottom: 20px;
         font-size: 30px;
         @include _media-small-down() {
-          margin-bottom: 8px;
-          font-size: 24px;
+          margin-bottom: 15px;
+          font-size: 22px;
           display: block;
         }
       }
@@ -154,7 +158,7 @@
     position: sticky;
     top: 100px;
     @include _media-small-down() {
-      padding-bottom: 30px;
+      padding-bottom: 0px;
     }
       .product_title{
       font-weight: 500;
