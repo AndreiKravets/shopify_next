@@ -4,8 +4,9 @@ import Link from "next/link"
 import Image from 'next/image'
 
 
-export default function Card({index, id, route, handle, title, images, price, setFavoritProduct, favorit_product}) {
 
+
+export default function Card({index, id, route, handle, title, images, price, setFavoritProduct, favorit_product}) {
     const style = {
         backgroundImage: `url(${images})`
     }

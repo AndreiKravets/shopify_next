@@ -10,6 +10,8 @@ import {FaRegSquare, FaRegCheckSquare} from "react-icons/fa";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { BsFillCaretDownFill, BsFillCaretLeftFill} from "react-icons/bs";
 import {motion} from "framer-motion";
+import { useKlaviyo } from '@frontend-sdk/klaviyo'
+import { identifyUser, trackVisitedProduct, trackAddedToCart } from '@frontend-sdk/klaviyo'
 
 
 
@@ -26,8 +28,10 @@ const Products = ({products}) => {
     const [favorit_product, setFavoritPproduct] = useState(' ')
     const [loaded, setLoaded] = useState(true)
 
- useEffect(() => {
+        useKlaviyo('SPdRQS') /* Klaviyo's script should be loaded */
 
+ useEffect(() => {
+        identifyUser({ $email: 'user@email.local' })
         function favoritProductInit() {
         if(localStorage.getItem("favorit_product")){
            setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))
@@ -245,7 +249,10 @@ const Products = ({products}) => {
 
                                 return (
                                             <motion.div className="col-md-4"
-                                             onClick={() => getProduct(product)}
+                                             onClick={() =>{
+                                              getProduct(product)
+                                              trackVisitedProduct(product)
+                                              }}
                                              initial="hidden" whileInView="visible"
                                              key={product.id} variants={{
                                                          hidden: {

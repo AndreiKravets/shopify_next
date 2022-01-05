@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import Link from "next/link"
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP } from 'react-icons/fa'
 import { BsArrowRight } from "react-icons/bs";
+import { useKlaviyoForceReload } from '@frontend-sdk/klaviyo'
 
 export default function Footer () {
+    useKlaviyoForceReload('<Klaviyo site ID>')
     return(
         <footer>
             <div className="container">
@@ -59,6 +61,7 @@ export default function Footer () {
                         <input id="name" type="text" autoComplete="name" placeholder="Email" required/>
                         <button type="submit">Subscribe <BsArrowRight/> </button>
                     </form>
+                    <div className="klaviyo-form-QTt4jn">qwqwqw</div>
                 </div>
                 </div>
             </div>
