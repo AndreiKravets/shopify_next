@@ -61,7 +61,7 @@ export default function Footer () {
                         <input id="name" type="text" autoComplete="name" placeholder="Email" required/>
                         <button type="submit">Subscribe <BsArrowRight/> </button>
                     </form>
-                    <div className="klaviyo-form-QTt4jn">qwqwqw</div>
+                    <div className="klaviyo-form-QTt4jn"></div>
                 </div>
                 </div>
             </div>
