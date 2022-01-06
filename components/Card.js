@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {FaRegEye, FaRegHeart, FaCartArrowDown} from 'react-icons/fa'
 import Link from "next/link"
 import Image from 'next/image'
-
+import { useKlaviyo } from '@frontend-sdk/klaviyo'
+import { identifyUser, trackVisitedProduct, trackAddedToCart } from '@frontend-sdk/klaviyo'
 
 
 
@@ -41,8 +42,8 @@ export default function Card({index, id, route, handle, title, images, price, se
                 } className="favorit_icon"/> : " "}
             </div>
             <div onClick={e => e.stopPropagation()} className="card_link_block">
-                <Link href={`${route}/${handle}`}>{title}</Link>
-                <Link href={`${route}/${handle}`}><a className='card_price'>FROM ${`${price} `}</a></Link>
+                <Link href={`${route}/${handle}`} onClick={() => trackVisitedProduct(product)}>{title}</Link>
+                <Link href={`${route}/${handle}`} onClick={() => trackVisitedProduct(product)}><a className='card_price'>FROM ${`${price} `}</a></Link>
             </div>
         </div>
     )

@@ -5,6 +5,8 @@ import {motion} from "framer-motion";
 import Slider from "react-slick";
 import Image from "next/image";
 import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
+import { useKlaviyo } from '@frontend-sdk/klaviyo'
+import { identifyUser, trackVisitedProduct, trackAddedToCart } from '@frontend-sdk/klaviyo'
 
 const settings = {
     dots: false,
@@ -194,7 +196,9 @@ export default function ProductPopup ({product}) {
                             </ul>
 
                         </div>
-                        <button className="popup_add_to_cart" onClick={addToCart}>Add to cart</button>
+                        <button className="popup_add_to_cart" onClick={() => {
+                            addToCart()
+                            trackAddedToCart(product)}}>Add to cart</button>
                     </div>
                 </div>
             </div>
