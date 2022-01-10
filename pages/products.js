@@ -31,7 +31,7 @@ const Products = ({products}) => {
         useKlaviyo('SPdRQS') /* Klaviyo's script should be loaded */
 
  useEffect(() => {
-        identifyUser({ $email: 'user@email.local' })
+        identifyUser({ $email: 'tetamoed1@gmail.com' })
         function favoritProductInit() {
         if(localStorage.getItem("favorit_product")){
            setFavoritPproduct(JSON.parse(JSON.stringify(localStorage.getItem("favorit_product"))).split(','))

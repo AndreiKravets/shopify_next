@@ -1,8 +1,7 @@
 import React from 'react'
 import Link from "next/link"
-import {observer} from "mobx-react-lite";
 
-const Menu = observer(()=>  {
+const Menu = ()=>  {
         return (
             <ul>
                 <li>
@@ -19,6 +18,6 @@ const Menu = observer(()=>  {
                 </li>
             </ul>
         )
-})
+}
 
 export default Menu
