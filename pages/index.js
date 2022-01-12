@@ -209,7 +209,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
             </div>
             <div className="home_instagram">
                 <div>
-                    <img src="insta.jpg" alt="instagram"/>
+                    {/*<img src="insta.jpg" alt="instagram"/>*/}
                 </div>
             </div>
             <div className='row home_subscribe'>
@@ -223,19 +223,19 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 </div>
             </div>
         </div>
-        <InstagramEmbed
-            url='https://www.instagram.com/p/B8qn8hJFD5K/'
-            clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'
-            maxWidth={320}
-            hideCaption={true}
-            containerTagName='div'
-            protocol=''
-            injectScript
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-        />
+        {/*<InstagramEmbed*/}
+        {/*    url='https://www.instagram.com/p/B8qn8hJFD5K/'*/}
+        {/*    clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'*/}
+        {/*    maxWidth={320}*/}
+        {/*    hideCaption={true}*/}
+        {/*    containerTagName='div'*/}
+        {/*    protocol=''*/}
+        {/*    injectScript*/}
+        {/*    onLoading={() => {}}*/}
+        {/*    onSuccess={() => {}}*/}
+        {/*    onAfterRender={() => {}}*/}
+        {/*    onFailure={() => {}}*/}
+        {/*/>*/}
     </MainContainer>
   )
 }
