@@ -72,7 +72,7 @@ export default function Home({collections,homepage,slider,isVisible}) {
             dots: false,
             arrows: false,
             infinite: true,
-            speed: 500,
+            autoplaySpeed:3000,
             autoplay: true,
             slidesToShow: 1,
             slidesToScroll: 1
@@ -223,26 +223,26 @@ export default function Home({collections,homepage,slider,isVisible}) {
                 </div>
             </div>
         </div>
-        {/*<InstagramEmbed*/}
-        {/*    url='https://www.instagram.com/p/B8qn8hJFD5K/'*/}
-        {/*    clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'*/}
-        {/*    maxWidth={320}*/}
-        {/*    hideCaption={true}*/}
-        {/*    containerTagName='div'*/}
-        {/*    protocol=''*/}
-        {/*    injectScript*/}
-        {/*    onLoading={() => {}}*/}
-        {/*    onSuccess={() => {}}*/}
-        {/*    onAfterRender={() => {}}*/}
-        {/*    onFailure={() => {}}*/}
-        {/*/>*/}
+        <InstagramEmbed
+            url='https://www.instagram.com/p/B8qn8hJFD5K/'
+            clientAccessToken='326011549072699|IGQVJYeTVKampjVUF2dXJYZAVVSY2JhakY1WmlSOVNpQjdpU1AxRmFLVElKNlhXSTBmMGhybURIb0NvMmYxTFZA4X0JZAd0dXelRtUnBFU2dCaURjcnZAzWmVYS1ZAnbTE4MnhNc1Q1YWxrWkNudWFjdVo2WAZDZD'
+            maxWidth={320}
+            hideCaption={true}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+        />
     </MainContainer>
   )
 }
 
 export async function getServerSideProps() {
     const collections = await shopifyClient.collection.fetchAllWithProducts()
-    const client = Prismic.client("https://paspartoo.prismic.io/api/v2", {})
+    const client = Prismic.client("https://sikacci.prismic.io/api/v2", {})
     const homepage = await client.query(Prismic.Predicates.at('document.type', 'homepage'))
     const slider = await client.query(Prismic.Predicates.at('document.type', 'home_slider'))
 

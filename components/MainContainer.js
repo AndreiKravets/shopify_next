@@ -27,6 +27,8 @@ export default function MainContainer({children, title,isVisible}){
         <>
             <Head>
                 <meta keywords="shopify next"></meta>
+                <meta key="robots" name="robots" content="noindex,follow" />
+                <meta key="googlebot" name="googlebot" content="noindex,follow" />
                 <title>Shopify  {title}</title>
             </Head>
             <div id="root">

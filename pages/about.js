@@ -51,7 +51,7 @@ const about = data.results[0].data
 }
 
 export async function getServerSideProps() {
-    const client = Prismic.client("https://paspartoo.prismic.io/api/v2", {})
+    const client = Prismic.client("https://sikacci.prismic.io/api/v2", {})
     const data = await client.query(Prismic.Predicates.at('document.type', 'about'))
     return {props: {data: data}}
 }

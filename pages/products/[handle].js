@@ -302,7 +302,7 @@ export async function getServerSideProps({ query }) {
        const productId = query.handle;
        const product = await shopifyClient.product.fetchByHandle(productId);
 
-       const client = Prismic.client("https://paspartoo.prismic.io/api/v2", {})
+       const client = Prismic.client("https://sikacci.prismic.io/api/v2", {})
        const data = await client.query(Prismic.Predicates.at('document.type', productId))
 
        return { props: {
