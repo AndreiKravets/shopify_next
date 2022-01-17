@@ -79,8 +79,8 @@
       img,svg{
         width: 100%;
         height: 100%;
+        max-width: 180px;
         object-fit: contain;
-        margin-left: -20px;
         display: block !important;
       }
       @include _media-md-down() {

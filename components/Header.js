@@ -50,7 +50,7 @@ const Header = observer( ()=> {
                             type="button"><span className="hamburger-box"><span
                              className="hamburger-inner"></span></span></button>
                     <div className="col-auto header_logo">
-                        <img src="/logo.svg" alt=""/>
+                        <img src="/hed-log.svg" alt=""/>
                     </div>
                     <div className="col head_menu_col">
                         <div className="menu-menu-container">
