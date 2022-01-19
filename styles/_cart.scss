@@ -39,8 +39,7 @@
  .cart_row{
    display: flex;
    flex-wrap: wrap;
-   margin-bottom: 20px;
-   padding: 40px 0;
+   padding: 40px 0 0;
    .cart_row_left{
      display: flex;
      img{
@@ -62,10 +61,21 @@
    .cart_row_right{
      display: flex;
      justify-content: space-between;
+     div{
+       display: flex;
+       height: 46px;
+       align-items: center;
+     }
+     h5{
+       height: 46px;
+       display: flex;
+       align-items: center;
+     }
      ul{
        border: 1px solid black;
        border-left: 0;
        display: inline-flex;
+       margin-right: 15px;
        li{
          padding: 10px 20px;
          border-left:1px solid black;
@@ -91,26 +101,52 @@
      }
    }
  }
-  .btn_checkout{
-    text-transform: uppercase;
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    justify-content: center;
-    letter-spacing: 1px;
-    border: none;
-    transition:all .3s ease-in-out;
-    min-width: 310px;
-    background-color: #0C1821;
-    margin-right: 0;
-    margin-left: auto;
-    margin-top: 30px;
-    &:hover{
-      background-color: $brand-hover;
+  .cart_subtotal_row{
+    position: relative;
+    padding-top: 40px;
+    margin-top: 40px;
+    &:before{
+      content: " ";
+      height: 1px;
+      width: auto;
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 0;
+      background-color: #BABABA;
     }
-    &:focus{
-      background-color: #0C1821 !important;
+
+    h6{
+      width: 100%;
+      text-align: right;
+      font-weight: 400;
+      span{
+        font-weight: 800;
+        margin-right: 12px;
+      }
+    }
+    .btn_checkout{
+      text-transform: uppercase;
+      color: white;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: center;
+      letter-spacing: 1px;
+      border: none;
+      transition:all .3s ease-in-out;
+      min-width: 310px;
+      background-color: #0C1821;
+      margin-right: 0;
+      margin-left: auto;
+      margin-top: 30px;
+      &:hover{
+        background-color: $brand-hover;
+      }
+      &:focus{
+        background-color: #0C1821 !important;
+      }
     }
   }
+
 }
