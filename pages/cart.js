@@ -96,7 +96,7 @@ const Cart = observer(() => {
                     console.log(cart)
                     return (
                         <div className="row cart_row" key={key}>
-                            <div className='col-md-7 cart_row_left'>
+                            <div className='col-lg-7 cart_row_left'>
                                 <img src={item.variant.image.src} alt=""/>
                                 <div>
                                     <h5>{item.title}</h5>
