@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {shopifyClient} from "../utils/shopify"
 import Router, {useRouter} from 'next/router';
-import {BiTrashAlt} from "react-icons/bi";
+import {BsTrash} from "react-icons/bs";
 import MainContainer from "../components/MainContainer";
 import {observer} from "mobx-react-lite";
 import cart_store from "../store/cart_store";
@@ -45,14 +45,6 @@ const Cart = observer(() => {
                 shopifyClient.checkout.removeLineItems(checkoutId, id).then((checkout) => {
                 });
             }
-
-                // shopifyClient.checkout.removeLineItems(checkoutId, id)
-                // storage.setItem('cart', JSON.stringify(cart))
-                // let cart_arr = cart.lineItems
-                // setCart(cart)
-                // setCartArr(cart_arr)
-
-
         })
         cart_store.setCount(cart.lineItems.length)
     }
@@ -124,9 +116,10 @@ const Cart = observer(() => {
                                             }}>+
                                         </li>
                                     </ul>
-                                    <div>
-                                        <BiTrashAlt onClick={(e) => {
+                                    <div className="cart_trash">
+                                        <BsTrash onClick={(e) => {
                                             del_product(e, item.id)
+                                            updateCart(item.id, 0)
                                         }}/>
                                     </div>
                                 </div>

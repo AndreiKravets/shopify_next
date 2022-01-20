@@ -10,6 +10,7 @@ import Card from "../components/Card";
 import {motion} from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 import InstagramEmbed from 'react-instagram-embed';
 import { useKlaviyo } from '@frontend-sdk/klaviyo'
 
@@ -89,7 +90,10 @@ export default function Home({collections,homepage,slider,isVisible}) {
     <MainContainer>
         {popup == true ? <div className="popup active" onClick={() => {
             setPopup(false)
-        }}><ProductPopup product={product}/></div> : <div className="popup"></div>}
+        }}>
+            <div onClick={() => {setPopup(false)}}  className="product_popup_close"><AiOutlineCloseSquare/></div>
+            <ProductPopup product={product}/>
+        </div> : <div className="popup"></div>}
         <div className="container-fluid home_top_section">
 
                 <Slider {...settings}>

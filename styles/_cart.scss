@@ -94,6 +94,18 @@
        height: 46px;
        align-items: center;
      }
+     .cart_trash{
+       svg{
+         font-size: 21px;
+         cursor: pointer;
+         transition: all 0.3s;
+         &:hover{
+           color: $brand-hover;
+           transition: all 0.3s;
+         }
+       }
+
+     }
      h5{
        height: 46px;
        display: flex;
@@ -103,7 +115,7 @@
        border: 1px solid black;
        border-left: 0;
        display: inline-flex;
-       margin-right: 15px;
+       margin-right: 25px;
        li{
          padding: 10px 20px;
          border-left:1px solid black;
