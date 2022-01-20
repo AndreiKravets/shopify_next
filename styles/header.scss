@@ -11,11 +11,17 @@
     z-index: 9999 !important;
     padding: 0px;
     position: fixed;
+    .container{
+      max-width: 100%;
+    }
   }
   @include _media-small-down() {
     z-index: auto;
   }
-
+.container-fluid{
+  background-color: $brand-primary;
+  z-index: 99;
+}
   .header_btn{
     color: white;
     display: flex;
@@ -32,9 +38,6 @@
         justify-content: flex-end;
         padding-bottom: 0;
       }
-    }
-    @include _media-xss-down() {
-      display: none;
     }
     a{
       font-weight: 500;

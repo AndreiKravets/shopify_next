@@ -40,6 +40,7 @@ const Header = observer( ()=> {
     return(
     <header>
         <div className="header_fluid">
+            <div className="container-fluid">
             <div className="container">
                 <div className="row head_menu">
                     <button id="hamb_button"
@@ -63,7 +64,7 @@ const Header = observer( ()=> {
                     </div>
                 </div>
             </div>
-
+            </div>
             <div
                 className={activeMenu ? "mobile_menu mobile_menu_top active" : "mobile_menu mobile_menu_top"}>
                 <div className="menu_mobile">
