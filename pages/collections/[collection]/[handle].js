@@ -11,6 +11,7 @@ import {FaRegHeart} from "react-icons/fa";
 import Slider from "react-slick";
 
 const Product = observer( ({product, data})=> {
+    console.log('sdfdf', product)
     let productData = false
     if (data.results.length > 0){
         productData = data.results[0].data

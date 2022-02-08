@@ -13,12 +13,14 @@ import { BsFillCaretDownFill, BsFillCaretLeftFill} from "react-icons/bs";
 
 
 const CollectionPage = ({collections}) => {
+
     const router = useRouter();
     const collectionHandle = router.query.collection;
     const collection = collections.filter(collection => collection.handle == collectionHandle)
+    console.log('11111111111111111111',collection)
     const products = collection[0].products
     const quantity_products = 6;
-    const [product, setProduct] = useState('')
+    const [product, setProduct] = useState('');
     const [popup, setPopup] = useState(false);
     const [filterClassActive, setFilterClassActive] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(() => products);
